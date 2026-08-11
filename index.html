@@ -208,19 +208,17 @@
     .faq-item.open .faq-q span:last-child{transform:rotate(45deg);background:#f2c45b}
 
     .midweek{background:var(--paper-2)}
-    .midweek-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-    .midweek-card{
-      min-height:420px;border-radius:28px;padding:42px;background:var(--orange);color:#fff;
-      display:flex;flex-direction:column;justify-content:space-between
-    }
-    .midweek-card .big{font-size:36px;line-height:1.1;font-weight:850;letter-spacing:-.04em;max-width:490px}
-    .midweek-card small{font-size:12px;letter-spacing:.13em;font-weight:800}
-    .detail-panel{padding:24px 22px 20px 34px;display:flex;flex-direction:column;justify-content:center}
-    .detail-panel p{color:#5a6556;font-size:17px;max-width:560px}
-    .detail-list{margin-top:22px}
-    .detail-list div{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
-    .detail-list span{color:#7d8877;font-size:13px}
-    .detail-list strong{text-align:right;font-size:14px}
+    .midweek-shell{background:var(--white);border:1px solid rgba(27,36,24,.06);border-radius:32px;padding:52px}
+    .midweek-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:end;padding-bottom:38px;border-bottom:1px solid var(--line)}
+    .midweek-intro p{margin:0;color:#5a6556;font-size:17px;max-width:600px}
+    .midweek-meta{display:grid;grid-template-columns:.75fr 1.55fr 1fr 1fr;gap:0;margin-top:10px}
+    .midweek-meta div{padding:26px 24px 4px;border-right:1px solid var(--line)}
+    .midweek-meta div:first-child{padding-left:0}
+    .midweek-meta div:last-child{border-right:0;padding-right:0}
+    .midweek-meta span{display:block;color:#7d8877;font-size:11px;letter-spacing:.12em;font-weight:800;margin-bottom:10px}
+    .midweek-meta strong{display:block;font-size:14px;line-height:1.55}
+    .midweek-note{margin-top:32px;background:var(--orange);color:#fff;border-radius:18px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:13px}
+    .midweek-note a{font-weight:850;text-decoration:underline;text-underline-offset:4px}
 
     .church-band{padding:86px 0}
     .church-inner{
@@ -258,13 +256,16 @@
       .nav-links.open{display:flex}
       .menu-btn{display:block}
       .hero{padding-top:56px}
-      .hero-grid,.friday-grid,.first-grid,.midweek-grid,.church-inner,.kickoff-head{grid-template-columns:1fr;gap:46px}
+      .hero-grid,.friday-grid,.first-grid,.church-inner,.kickoff-head,.midweek-intro{grid-template-columns:1fr;gap:46px}
       .hero-meta{grid-template-columns:1fr 1fr 1fr}
       .welcome-card{min-height:450px}
       .section{padding:82px 0}
       .section-head{flex-direction:column;align-items:flex-start}
       .date-grid{grid-template-columns:1fr}
       .date-card{min-height:180px}
+      .midweek-meta{grid-template-columns:1fr 1fr}
+      .midweek-meta div{border-right:0;border-bottom:1px solid var(--line);padding:22px 0}
+      .midweek-meta div:nth-last-child(-n+2){border-bottom:0}
       .cards-3{grid-template-columns:1fr}
       .info-card{min-height:260px}
       .info-card .num{margin-bottom:42px}
@@ -283,9 +284,12 @@
       .welcome-copy{left:26px;right:26px;bottom:26px}
       .welcome-title{font-size:46px}
       .small-badge{right:18px;top:66px}
-      .midweek-card{min-height:350px;padding:30px}
-      .midweek-card .big{font-size:30px}
-      .detail-panel{padding:10px 4px}
+      .midweek-shell{padding:28px}
+      .midweek-intro{gap:28px;padding-bottom:28px}
+      .midweek-meta{grid-template-columns:1fr}
+      .midweek-meta div,.midweek-meta div:nth-last-child(-n+2){border-bottom:1px solid var(--line);padding:18px 0}
+      .midweek-meta div:last-child{border-bottom:0}
+      .midweek-note{align-items:flex-start;flex-direction:column}
       .schedule-row{grid-template-columns:68px 1fr}
       .visit{padding-bottom:82px}
       .visit-card{padding:30px}
@@ -327,7 +331,7 @@
         <div class="eyebrow">UMKC · Kansas City</div>
         <h1>探索信仰，<br><span class="accent">认识朋友，</span><br>一起成长。</h1>
         <p class="hero-lead">
-          ECCM 是面向大学生、访问学者和年轻人的中文基督徒团契。无论你已经是基督徒，还是正在探索基督信仰，都欢迎你来一起吃晚餐、认识朋友、一起读圣经。
+          ECCM 是面向大学生、访问学者和年轻人的中文基督徒团契。无论你已经相信，还是正在探索，都欢迎你一起吃晚餐、读圣经、认识朋友。
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#fall">查看秋季安排</a>
@@ -371,20 +375,20 @@
           <div class="eyebrow">FALL 2026 · START HERE</div>
           <h2>这个秋季，<br>从这里开始。</h2>
         </div>
-        <p>第一次来可以从任何一周开始。8月先认识大家，9月4日从约翰福音第一章正式开始查经。</p>
+        <p>8月先认识大家；9月4日从约翰福音第一章开始。任何一周都可以第一次来。</p>
       </div>
       <div class="date-grid">
         <article class="date-card featured">
           <time datetime="2026-08-21">AUG 21 · FRIDAY</time>
-          <div><strong>迎新 · Orientation</strong><p>认识 ECCM、晚餐相聚，也认识这个秋季会同行的新朋友。</p></div>
+          <div><strong>迎新 · Orientation</strong><p>晚餐相聚，认识 ECCM 和新朋友。</p></div>
         </article>
         <article class="date-card">
           <time datetime="2026-08-28">AUG 28 · FRIDAY</time>
-          <div><strong>秋季活动</strong><p>一起参与活动，在轻松的环境中认识彼此。</p></div>
+          <div><strong>秋季活动</strong><p>轻松相聚，进一步认识彼此。</p></div>
         </article>
         <article class="date-card">
           <time datetime="2026-09-04">SEP 04 · FRIDAY</time>
-          <div><strong>约翰福音 · 第一章</strong><p>从零开始读约翰福音；没有读经或教会背景也可以参加。</p></div>
+          <div><strong>约翰福音 · 第一章</strong><p>从零开始；没有读经经验也可以参加。</p></div>
         </article>
       </div>
     </div>
@@ -398,7 +402,7 @@
           <h2>信仰、认识、关系，<br>一起成长。</h2>
         </div>
         <p>
-          3S 是 ECCM 的三个重点：在信仰中成长，认识基督信仰，并在生活中建立真实关系。
+          在信仰中成长，认识圣经，也建立真实关系。
         </p>
       </div>
 
@@ -406,17 +410,17 @@
         <article class="info-card">
           <div class="num">01 · SPIRITUAL</div>
           <h3>信仰成长</h3>
-          <p>在祷告、团契和教会生活中认识基督，彼此鼓励。</p>
+          <p>在祷告和团契中认识基督，彼此鼓励。</p>
         </article>
         <article class="info-card">
           <div class="num">02 · STUDY</div>
           <h3>认识信仰</h3>
-          <p>一起读圣经、提问题、讨论，更深入地认识基督信仰。</p>
+          <p>一起读圣经、提问题、讨论。</p>
         </article>
         <article class="info-card">
           <div class="num">03 · SOCIAL</div>
           <h3>一起生活</h3>
-          <p>晚餐相聚、出游、游戏、过节，在生活中认识彼此。</p>
+          <p>晚餐、出游、游戏、过节，一起经历生活。</p>
         </article>
       </div>
     </div>
@@ -428,7 +432,7 @@
         <div class="eyebrow light">FRIDAY BIBLE STUDY</div>
         <h2>每周五，先一起吃晚餐，<br>再一起读圣经。</h2>
         <p class="dark-lead">
-          Fall 2026，我们从第一章开始学习约翰福音。不需要读过圣经，也不需要教会背景；带着问题来就好。
+          Fall 2026，从约翰福音第一章开始。没有读经经验也可以来，问题也欢迎。
         </p>
       </div>
 
@@ -458,7 +462,7 @@
         <div class="eyebrow">NEW HERE?</div>
         <h2>第一次来，<br>不用懂规矩。</h2>
         <p>
-          不用报名，也不用先认识谁。自己来或带朋友都可以，到了告诉我们你是第一次来就好。
+          不用报名，也不用先认识谁。自己来或带朋友都可以。
         </p>
       </div>
 
@@ -479,23 +483,9 @@
 
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">
-            <span>Fall 2026 在学习什么？</span><span>+</span>
-          </button>
-          <div class="faq-a"><div><p>我们会从第一章开始学习约翰福音。没有读经经验也可以参加。</p></div></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
             <span>聚会使用什么语言？</span><span>+</span>
           </button>
           <div class="faq-a"><div><p>主要使用中文。查经、讨论、分享和祷告都以中文进行。</p></div></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span>我一个人来会不会很尴尬？</span><span>+</span>
-          </button>
-          <div class="faq-a"><div><p>不会。告诉同工你是第一次来，我们会带你认识大家。</p></div></div>
         </div>
 
         <div class="faq-item">
@@ -509,22 +499,22 @@
   </section>
 
   <section class="section midweek" id="midweek">
-    <div class="container midweek-grid">
-      <div class="midweek-card">
-        <small>WEDNESDAY · MIDWEEK</small>
-        <div class="big">每周读一点，分享一点。<br>也一起谈生活、一起祷告。</div>
-      </div>
-      <div class="detail-panel">
-        <div class="eyebrow">THE PILGRIM'S PROGRESS</div>
-        <h2>周三 ·《天路历程》</h2>
-        <p>我们正在阅读 John Bunyan 的《天路历程》。每周读一小段，分享阅读中的想法和最近的生活，也一起祷告。</p>
-        <div class="detail-list">
-          <div><span>时间</span><strong>周三 6:30–8:00 PM</strong></div>
-          <div><span>地点</span><strong>Leo 家 · The Bluffs at Brush Creek<br>1320 E 49th St, Kansas City, MO 64110</strong></div>
-          <div><span>联系</span><strong><a href="tel:+18017067979">Leo Liu · 801-706-7979</a></strong></div>
+    <div class="container">
+      <div class="midweek-shell">
+        <div class="midweek-intro">
+          <div>
+            <div class="eyebrow">WEDNESDAY · THE PILGRIM'S PROGRESS</div>
+            <h2>读一点，分享一点，<br>也一起祷告。</h2>
+          </div>
+          <p>我们正在读 John Bunyan 的《天路历程》。每周一小段，聊聊阅读和最近的生活。</p>
+        </div>
+        <div class="midweek-meta">
+          <div><span>时间</span><strong>周三<br>6:30–8:00 PM</strong></div>
+          <div><span>地点</span><strong>Leo 家 · The Bluffs at Brush Creek<br>1320 E 49th St</strong></div>
+          <div><span>联系</span><strong><a href="tel:+18017067979">Leo Liu<br>801-706-7979</a></strong></div>
           <div><span>适合</span><strong>想更深入参与的朋友</strong></div>
         </div>
-        <p class="small-copy">到达前请联系 Leo 确认具体房号。</p>
+        <div class="midweek-note"><span>到达前请联系 Leo 确认具体房号。</span><a href="tel:+18017067979">联系 Leo →</a></div>
       </div>
     </div>
   </section>
@@ -536,7 +526,7 @@
         <h2>扎根校园，<br>也连接本地教会。</h2>
       </div>
       <p>
-        ECCM 由本地华人教会参与服事和支持。我们也鼓励基督徒扎根本地教会，在敬拜、教导、团契和服事中成长。
+        ECCM 由本地华人教会参与服事和支持，也鼓励基督徒扎根本地教会。
       </p>
     </div>
   </section>
