@@ -157,9 +157,12 @@
     .section{padding:94px 0}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
     .section-head p{max-width:500px;margin:0;color:#5d6859;font-size:16px}
+    .about-story{display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:end;padding-bottom:52px;margin-bottom:34px;border-bottom:1px solid var(--line)}
+    .about-story p{margin:0;color:#4f5a4b;font-size:20px;line-height:1.7;max-width:660px}
+    .values-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;color:#697463;font-size:11px;letter-spacing:.14em;font-weight:850}
     .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .info-card{
-      background:var(--white);border-radius:24px;padding:28px;min-height:260px;
+      background:var(--white);border-radius:22px;padding:24px;min-height:220px;
       display:flex;flex-direction:column;border:1px solid rgba(27,36,24,.05)
     }
     .info-card:nth-child(1){background:var(--paper-2)}
@@ -167,9 +170,9 @@
     .info-card:nth-child(3){background:var(--green);color:#fff}
     .info-card:nth-child(3) .num{color:var(--yellow)}
     .info-card:nth-child(3) p{color:#cbd4c8}
-    .info-card .num{font-size:11px;letter-spacing:.12em;font-weight:850;color:#9ca497;margin-bottom:48px}
-    .info-card h3{margin-bottom:16px}
-    .info-card p{margin:0;color:#5c6758;font-size:15px}
+    .info-card .num{font-size:10px;letter-spacing:.12em;font-weight:850;color:#9ca497;margin-bottom:32px}
+    .info-card h3{margin-bottom:12px;font-size:24px}
+    .info-card p{margin:0;color:#5c6758;font-size:14px}
 
     .section-dark{background:var(--green);color:#fff}
     .friday-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:74px;align-items:center}
@@ -270,12 +273,14 @@
       .nav-links.open{display:flex}
       .menu-btn{display:block}
       .hero{padding-top:56px}
-      .hero-grid,.friday-grid,.first-grid,.kickoff-head,.midweek-intro{grid-template-columns:1fr;gap:46px}
+      .hero-grid,.friday-grid,.first-grid,.kickoff-head,.midweek-intro,.about-story{grid-template-columns:1fr;gap:46px}
       .hero-meta{grid-template-columns:1fr 1fr 1fr}
       .welcome-card{min-height:450px}
       .section{padding:82px 0}
       .midweek{padding:62px 0}
       .section-head{flex-direction:column;align-items:flex-start}
+      .about-story{gap:28px;padding-bottom:38px}
+      .about-story p{font-size:18px}
       .calendar-layout{grid-template-columns:1fr}
       .date-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
       .date-card.featured{grid-row:auto;grid-column:1/3;min-height:250px}
@@ -286,8 +291,8 @@
       .midweek-meta div{border-right:0;border-bottom:1px solid var(--line);padding:22px 0}
       .midweek-meta div:nth-last-child(-n+2){border-bottom:0}
       .cards-3{grid-template-columns:1fr}
-      .info-card{min-height:260px}
-      .info-card .num{margin-bottom:42px}
+      .info-card{min-height:200px}
+      .info-card .num{margin-bottom:28px}
       .strip-inner{justify-content:flex-start;white-space:nowrap;overflow:auto}
       .visit-card{grid-template-columns:1fr;padding:38px}
       .footer-inner{flex-direction:column;align-items:flex-start}
@@ -340,7 +345,7 @@
       <span></span><span></span>
     </button>
     <div class="nav-links">
-      <a href="#about">关于我们</a>
+      <a href="#about">我们是谁</a>
       <a href="#fall">秋季日程</a>
       <a href="#friday">周五查经</a>
       <a href="#first">第一次来</a>
@@ -388,9 +393,9 @@
   <section class="strip" aria-label="ECCM 3S">
     <div class="container strip-inner">
       <span>3S</span><span class="dot">•</span>
-      <span>SPIRITUAL</span><span class="dot">•</span>
-      <span>STUDY</span><span class="dot">•</span>
-      <span>SOCIAL</span>
+      <span>SPIRITUAL · 信仰成长</span><span class="dot">•</span>
+      <span>STUDY · 认识信仰</span><span class="dot">•</span>
+      <span>SOCIAL · 一起生活</span>
     </div>
   </section>
 
@@ -429,15 +434,17 @@
 
   <section class="section" id="about">
     <div class="container">
-      <div class="section-head">
+      <div class="about-story">
         <div>
-          <div class="eyebrow">我们看重什么 · 3S</div>
-          <h2>三个方向，<br>一种共同生活。</h2>
+          <div class="eyebrow">我们是谁 · ABOUT ECCM</div>
+          <h2>三十年来，<br>陪学生走一段路。</h2>
         </div>
         <p>
-          在信仰中成长，认识圣经，也建立真实关系。
+          ECCM 在 Kansas City 陪伴学生已有三十年。我们关心的不只是聚会，也关心初到一座城市、学习、友情、生活和信仰。
         </p>
       </div>
+
+      <div class="values-head"><span>我们看重什么</span><span>3S · 信仰成长 · 认识信仰 · 一起生活</span></div>
 
       <div class="cards-3">
         <article class="info-card">
