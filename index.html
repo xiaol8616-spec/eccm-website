@@ -199,6 +199,15 @@
       transition:width .42s cubic-bezier(.2,.8,.2,1),max-height .48s cubic-bezier(.2,.8,.2,1),border-radius .38s ease,box-shadow .3s ease
     }
     .who-card[open]{width:min(720px,100%);max-height:560px;color:#fff;border-radius:26px;background:linear-gradient(145deg,rgba(35,48,32,.9),rgba(24,33,23,.82));border-color:rgba(255,255,255,.22);box-shadow:0 24px 64px rgba(27,36,24,.24),inset 0 1px 0 rgba(255,255,255,.18)}
+    @media (min-width:561px){
+      .who-card.is-following{
+        position:fixed;left:auto;right:max(20px,calc((100vw - 1160px)/2));top:68vh;
+        transform:translateY(-50%);z-index:120;
+        animation:who-glass-arrive .3s ease both
+      }
+      .who-card.is-following:not([open]):hover{transform:translateY(calc(-50% - 3px)) scale(1.015)}
+      .who-card.is-following[open]{top:50%;transform:translateY(-50%)}
+    }
     .who-card summary{
       position:relative;width:100%;height:124px;margin:0;list-style:none;cursor:pointer;
       border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
@@ -533,6 +542,10 @@
       from{opacity:0;transform:translateY(14px)}
       to{opacity:1;transform:translateY(0)}
     }
+    @keyframes who-glass-arrive{
+      from{opacity:0;filter:blur(4px)}
+      to{opacity:1;filter:blur(0)}
+    }
     @media (prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
       .strip:after{animation:none;opacity:1;transform:translateY(-50%)}
@@ -542,6 +555,7 @@
       .motion-ready .hero-actions,
       .motion-ready .hero-visual,
       .motion-ready .reveal-item{opacity:1;transform:none;animation:none;transition:none}
+      .who-card.is-following{animation:none}
     }
   </style>
 </head>
@@ -889,6 +903,28 @@
       whoCard.querySelector('summary').focus();
     }
   });
+
+  const valuesSection = document.querySelector('#values');
+  const midweekSection = document.querySelector('#midweek');
+  const followMedia = window.matchMedia('(min-width: 561px)');
+  let followFrame = null;
+  const updateWhoFollow = () => {
+    followFrame = null;
+    if (!followMedia.matches) {
+      whoCard.classList.remove('is-following');
+      return;
+    }
+    const start = valuesSection.offsetTop - window.innerHeight * .35;
+    const end = midweekSection.offsetTop + midweekSection.offsetHeight - window.innerHeight * .62;
+    whoCard.classList.toggle('is-following', window.scrollY >= start && window.scrollY <= end);
+  };
+  const requestWhoFollow = () => {
+    if (!followFrame) followFrame = requestAnimationFrame(updateWhoFollow);
+  };
+  window.addEventListener('scroll', requestWhoFollow, { passive: true });
+  window.addEventListener('resize', requestWhoFollow);
+  followMedia.addEventListener('change', updateWhoFollow);
+  updateWhoFollow();
 
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
