@@ -137,7 +137,7 @@
     .date-card{background:var(--white);border:1px solid rgba(27,36,24,.06);border-radius:22px;padding:26px;min-height:172px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
     .date-card.featured{background:var(--yellow)}
     .date-card.featured{grid-row:1/3;min-height:358px}
-    .date-mark{font-size:96px;line-height:.8;font-weight:900;letter-spacing:-.08em;color:rgba(27,36,24,.12)}
+    .date-mark{font-size:112px;line-height:.78;font-weight:900;letter-spacing:-.08em;color:rgba(27,36,24,.14)}
     .date-card time{font-size:12px;letter-spacing:.12em;font-weight:850;color:#687263}
     .date-card strong{display:block;font-size:26px;line-height:1.1;margin-bottom:8px}
     .date-card p{margin:0;color:#596454;font-size:14px}
@@ -331,9 +331,11 @@
       .kickoff-head p{font-size:15px}
       .date-grid,.calendar-layout{gap:10px}
       .date-card,.date-card.featured{min-height:0;padding:17px 18px;display:grid;grid-template-columns:94px 1fr;gap:6px 14px;align-items:start}
+      .date-card.featured{position:relative;padding-right:76px}
       .date-card time,.date-card.featured time{grid-column:1;grid-row:1;margin-top:4px}
       .date-card>div:last-child,.date-card.featured>div:last-child{grid-column:2;grid-row:1}
       .date-mark{display:none}
+      .date-card.featured .date-mark{display:block;position:absolute;right:14px;bottom:9px;font-size:72px;line-height:.78;color:rgba(27,36,24,.2)}
       .date-card strong{font-size:20px;margin-bottom:5px}
       .date-card p{font-size:13px;line-height:1.5}
       .calendar-social{min-height:0;padding:20px;gap:24px}
