@@ -124,7 +124,7 @@
       font-size:12px;font-weight:800;box-shadow:0 15px 35px rgba(0,0,0,.14)
     }
 
-    .strip{background:var(--ink);color:#fff;padding:22px 0}
+    .strip{position:relative;background:var(--ink);color:#fff;padding:22px 0}
     .strip-inner{display:flex;justify-content:space-between;align-items:center;gap:22px;font-size:14px;font-weight:850;letter-spacing:.13em}
     .strip-inner span:first-child{font-size:16px}
     .strip .dot{color:var(--yellow)}
@@ -396,6 +396,8 @@
       .welcome-verse{font-size:13px;line-height:1.5;margin-top:16px}
       .small-badge{right:16px;top:58px;padding:9px 12px}
       .strip{padding:17px 0}
+      .strip:before{content:"";position:absolute;z-index:2;right:0;top:0;bottom:0;width:76px;background:linear-gradient(90deg,transparent,var(--ink) 68%);pointer-events:none}
+      .strip:after{content:"→";position:absolute;z-index:3;right:12px;top:50%;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--ink);font-size:16px;font-weight:900;pointer-events:none;animation:strip-swipe-hint 4s ease-in-out infinite}
       .strip-inner{gap:17px;font-size:12px}
       .kickoff{padding:52px 0}
       .kickoff-head{gap:20px;margin-bottom:26px}
@@ -482,6 +484,15 @@
       .footer-contact{padding-bottom:0}
       .footer-copy{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;width:100%}
       .footer-brand{font-size:42px}
+    }
+    @keyframes strip-swipe-hint{
+      0%,18%,100%{opacity:0;transform:translate(-9px,-50%)}
+      28%,62%{opacity:1;transform:translate(0,-50%)}
+      74%{opacity:0;transform:translate(7px,-50%)}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .strip:after{animation:none;opacity:1;transform:translateY(-50%)}
     }
   </style>
 </head>
