@@ -141,11 +141,13 @@
     .date-card time{font-size:12px;letter-spacing:.12em;font-weight:850;color:#687263}
     .date-card strong{display:block;font-size:26px;line-height:1.1;margin-bottom:8px}
     .date-card p{margin:0;color:#596454;font-size:14px}
-    .calendar-social{background:var(--green);color:#fff;border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:358px}
-    .calendar-social span{font-size:11px;letter-spacing:.15em;font-weight:850;color:#b9c5b5}
+    .calendar-social{position:relative;background:var(--green);color:#fff;border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:358px;box-shadow:0 18px 45px rgba(27,36,24,.14);transition:transform .2s ease,box-shadow .2s ease}
+    .calendar-social:hover{transform:translateY(-3px);box-shadow:0 24px 55px rgba(27,36,24,.2)}
+    .calendar-social:after{content:"↗";position:absolute;right:25px;top:21px;color:var(--yellow);font-size:27px;font-weight:900}
+    .calendar-social>span:first-child{font-size:12px;letter-spacing:.13em;font-weight:850;color:var(--yellow)}
     .calendar-social strong{display:block;font-size:36px;line-height:1.02;letter-spacing:-.04em;margin-bottom:16px}
     .calendar-social p{margin:0 0 24px;color:#cbd4c8;font-size:14px}
-    .calendar-social a{align-self:flex-start;background:var(--yellow);color:var(--ink);padding:12px 16px;border-radius:999px;font-size:13px;font-weight:850}
+    .calendar-social-cta{display:inline-flex;align-items:center;background:var(--yellow);color:var(--ink);padding:12px 16px;border-radius:999px;font-size:13px;font-weight:850}
 
     .section{padding:94px 0}
     .values-section{padding:78px 0 84px}
@@ -249,6 +251,7 @@
     .visit-card p{font-size:18px}
     .visit-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
     .small-copy{font-size:13px!important;opacity:.82;max-width:600px}
+    .venue-note{grid-column:2;margin:-24px 4px 0;text-align:right;font-size:11px;color:rgba(255,255,255,.72)}
     .map-wrap{min-height:360px;border-radius:24px;overflow:hidden;background:#efe5ce;box-shadow:0 12px 35px rgba(82,43,9,.16);border:1px solid rgba(255,255,255,.25)}
     .map-wrap iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
     .address-block{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.28)}
@@ -339,8 +342,10 @@
       .date-card strong{font-size:20px;margin-bottom:5px}
       .date-card p{font-size:13px;line-height:1.5}
       .calendar-social{min-height:0;padding:20px;gap:24px}
+      .calendar-social:after{right:19px;top:15px;font-size:24px}
       .calendar-social strong{font-size:27px;margin-bottom:8px}
       .calendar-social p{margin-bottom:15px}
+      .calendar-social-cta{width:100%;justify-content:center}
       .section{padding:54px 0}
       .values-section{padding:48px 0 52px}
       .values-head{margin-bottom:18px}
@@ -390,6 +395,7 @@
       .visit-actions{gap:8px}
       .visit-actions .btn{width:100%}
       .map-wrap,.map-wrap iframe{min-height:210px}
+      .venue-note{grid-column:1;margin:-10px 2px 0;text-align:right;font-size:10px}
       footer{padding:28px 0 34px}
       .footer-inner{gap:20px}
       .footer-left{flex-direction:column;align-items:flex-start;gap:10px}
@@ -487,10 +493,10 @@
             <div><strong>约翰福音 · 第一章</strong><p>从零开始；没有读经经验也可以参加。</p></div>
           </article>
         </div>
-        <aside class="calendar-social">
-          <span>FOLLOW ECCM</span>
-          <div><strong>这周会发生什么？</strong><p>活动更新与临时通知会发布在 Instagram。</p><a href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">@ECCM_KC ↗</a></div>
-        </aside>
+        <a class="calendar-social" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener" aria-label="在 Instagram 查看 ECCM 本周动态">
+          <span>INSTAGRAM · @ECCM_KC</span>
+          <div><strong>本周动态</strong><p>活动更新与临时通知都在这里。</p><span class="calendar-social-cta">查看本周动态 ↗</span></div>
+        </a>
       </div>
     </div>
   </section>
@@ -637,18 +643,17 @@
           <p>Friday · 6:15–8:30 PM</p>
           <div class="address-block">
             <strong>Second Presbyterian Church</strong>
-            <span>318 E 55th St, Kansas City, MO 64113</span>
+            <span>318 E 55th St</span>
             <div class="distance-note">从 UMKC 步行约 15 分钟</div>
           </div>
-          <p class="small-copy">ECCM 使用中文聚会；场地借自 Second Presbyterian Church。</p>
           <div class="visit-actions">
             <a class="btn btn-white" href="https://www.google.com/maps/dir/?api=1&amp;origin=University+of+Missouri-Kansas+City&amp;destination=Second+Presbyterian+Church+318+E+55th+St+Kansas+City+MO+64113&amp;travelmode=walking" target="_blank" rel="noopener">从 UMKC 步行导航</a>
-            <a class="btn btn-social" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">关注 Instagram · @ECCM_KC ↗</a>
           </div>
         </div>
         <div class="map-wrap" aria-label="Second Presbyterian Church 地图">
           <iframe title="Second Presbyterian Church on Google Maps" src="https://www.google.com/maps?q=Second+Presbyterian+Church,+318+E+55th+St,+Kansas+City,+MO+64113&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
+        <div class="venue-note">ECCM 使用中文聚会 · 场地借自 Second Presbyterian Church</div>
       </div>
     </div>
   </section>
