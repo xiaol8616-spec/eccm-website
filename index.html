@@ -130,7 +130,7 @@
     .strip .dot{color:var(--yellow)}
 
     .kickoff{padding:82px 0;background:var(--paper-2)}
-    .kickoff-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:end;margin-bottom:38px}
+    .kickoff-head{margin-bottom:38px}
     .kickoff-head p{margin:0;color:#596454;font-size:17px;max-width:600px}
     .calendar-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
     .date-grid{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:1fr 1fr;gap:14px}
@@ -160,7 +160,8 @@
     .who-content{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;padding:30px 28px 32px;border-top:1px solid rgba(255,255,255,.12)}
     .who-content h2{font-size:clamp(36px,4vw,54px)}
     .who-content p{margin:0;color:#cbd4c8;font-size:17px;line-height:1.7;max-width:620px}
-    .values-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;color:#697463;font-size:11px;letter-spacing:.14em;font-weight:850}
+    .values-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:26px;color:#697463;font-size:11px;letter-spacing:.14em;font-weight:850}
+    .values-title{color:var(--ink);font-size:clamp(32px,3.5vw,48px);line-height:1;letter-spacing:-.045em;font-weight:900}
     .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .info-card{
       background:var(--white);border-radius:22px;padding:24px;min-height:220px;
@@ -332,8 +333,9 @@
       .calendar-social p{margin-bottom:17px}
       .section{padding:60px 0}
       .values-section{padding:52px 0 58px}
-      .values-head{margin-bottom:15px}
+      .values-head{margin-bottom:18px}
       .values-head span:last-child{display:none}
+      .values-title{font-size:32px}
       .cards-3{gap:10px}
       .info-card{min-height:0;padding:20px}
       .info-card .num{margin-bottom:17px}
@@ -348,9 +350,14 @@
       .faq-q{padding:16px 17px;font-size:15px}
       .faq-a p{padding:0 17px 16px}
       .who-section{padding-bottom:52px}
-      .who-card summary{padding:20px;gap:12px}
-      .who-card summary span:first-child{font-size:21px}
-      .who-card summary span:last-child{font-size:9px;text-align:right}
+      .who-card{border-radius:22px}
+      .who-card summary{padding:22px;display:grid;gap:7px;position:relative}
+      .who-card summary:after{content:"＋";position:absolute;right:22px;top:24px;color:var(--yellow);font-size:20px;line-height:1}
+      .who-card[open] summary:after{content:"−"}
+      .who-card summary span:first-child{font-size:24px;padding-right:34px}
+      .who-card summary span:last-child{font-size:10px;text-align:left;padding-right:34px}
+      .who-content{padding:24px 22px 26px}
+      .who-content p{font-size:15px}
       .midweek{padding:50px 0}
       .midweek-shell{padding:26px}
       .midweek-intro{gap:22px;padding-bottom:24px}
@@ -448,7 +455,6 @@
           <div class="eyebrow">2026 秋季日历</div>
           <h2>这个秋季，<br>从 ECCM 开始。</h2>
         </div>
-        <p>8月，我们先认识彼此；9月4日，一起从约翰福音第一章开始。无论哪一周第一次来，都欢迎你。</p>
       </div>
       <div class="calendar-layout">
         <div class="date-grid">
@@ -476,7 +482,7 @@
 
   <section class="section values-section" id="values">
     <div class="container">
-      <div class="values-head"><span>我们看重什么</span><span>3S · 信仰成长 · 认识信仰 · 一起生活</span></div>
+      <div class="values-head"><span class="values-title">我们看重什么</span><span>3S · 信仰成长 · 认识信仰 · 一起生活</span></div>
 
       <div class="cards-3">
         <article class="info-card">
@@ -502,7 +508,7 @@
     <div class="container friday-grid">
       <div>
         <div class="eyebrow light">FRIDAY BIBLE STUDY</div>
-        <h2>每周五，先吃晚餐，<br>再读圣经。</h2>
+        <h2>每周五，<br>从一顿晚餐开始。</h2>
         <p class="dark-lead">
           2026 秋季，从约翰福音第一章开始。
         </p>
@@ -577,7 +583,7 @@
   <section class="who-section" id="about">
     <div class="container">
       <details class="who-card">
-        <summary><span>我们是谁</span><span>点击了解 ECCM · 30 YEARS ＋</span></summary>
+        <summary><span>我们是谁</span><span>30 YEARS · 点击了解</span></summary>
         <div class="who-content">
           <h2>三十年来，<br>陪学生走一段路。</h2>
           <p>ECCM 在 Kansas City 陪伴学生已有三十年。我们关心的不只是聚会，也关心初到一座城市、学习、友情、生活和信仰。</p>
