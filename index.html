@@ -80,8 +80,6 @@
       max-width:680px;margin:28px 0 28px;color:#4f5a4b;font-size:19px
     }
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .follow-link{display:inline-flex;align-items:center;padding:0 8px;font-size:13px;font-weight:800;color:#596454}
-    .follow-link:hover{text-decoration:underline;text-underline-offset:4px}
     .btn{
       min-height:50px;padding:0 22px;border-radius:999px;
       display:inline-flex;align-items:center;justify-content:center;
@@ -140,21 +138,34 @@
     .kickoff{padding:96px 0;background:var(--paper-2)}
     .kickoff-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:end;margin-bottom:38px}
     .kickoff-head p{margin:0;color:#596454;font-size:17px;max-width:600px}
-    .date-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .date-card{background:var(--white);border:1px solid rgba(27,36,24,.06);border-radius:22px;padding:26px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
+    .calendar-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
+    .date-grid{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:1fr 1fr;gap:14px}
+    .date-card{background:var(--white);border:1px solid rgba(27,36,24,.06);border-radius:22px;padding:26px;min-height:172px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
     .date-card.featured{background:var(--yellow)}
+    .date-card.featured{grid-row:1/3;min-height:358px}
+    .date-mark{font-size:96px;line-height:.8;font-weight:900;letter-spacing:-.08em;color:rgba(27,36,24,.12)}
     .date-card time{font-size:12px;letter-spacing:.12em;font-weight:850;color:#687263}
     .date-card strong{display:block;font-size:26px;line-height:1.1;margin-bottom:8px}
     .date-card p{margin:0;color:#596454;font-size:14px}
+    .calendar-social{background:var(--green);color:#fff;border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:358px}
+    .calendar-social span{font-size:11px;letter-spacing:.15em;font-weight:850;color:#b9c5b5}
+    .calendar-social strong{display:block;font-size:36px;line-height:1.02;letter-spacing:-.04em;margin-bottom:16px}
+    .calendar-social p{margin:0 0 24px;color:#cbd4c8;font-size:14px}
+    .calendar-social a{align-self:flex-start;background:var(--yellow);color:var(--ink);padding:12px 16px;border-radius:999px;font-size:13px;font-weight:850}
 
     .section{padding:112px 0}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
     .section-head p{max-width:500px;margin:0;color:#5d6859;font-size:16px}
     .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .info-card{
-      background:var(--white);border-radius:24px;padding:30px;min-height:315px;
+      background:var(--white);border-radius:24px;padding:30px;min-height:290px;
       display:flex;flex-direction:column;border:1px solid rgba(27,36,24,.05)
     }
+    .info-card:nth-child(1){background:var(--paper-2)}
+    .info-card:nth-child(2){background:var(--yellow)}
+    .info-card:nth-child(3){background:var(--green);color:#fff}
+    .info-card:nth-child(3) .num{color:var(--yellow)}
+    .info-card:nth-child(3) p{color:#cbd4c8}
     .info-card .num{font-size:11px;letter-spacing:.12em;font-weight:850;color:#9ca497;margin-bottom:72px}
     .info-card h3{margin-bottom:16px}
     .info-card p{margin:0;color:#5c6758;font-size:15px}
@@ -262,8 +273,12 @@
       .welcome-card{min-height:450px}
       .section{padding:82px 0}
       .section-head{flex-direction:column;align-items:flex-start}
-      .date-grid{grid-template-columns:1fr}
+      .calendar-layout{grid-template-columns:1fr}
+      .date-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
+      .date-card.featured{grid-row:auto;grid-column:1/3;min-height:250px}
       .date-card{min-height:180px}
+      .date-mark{font-size:72px}
+      .calendar-social{min-height:240px}
       .midweek-meta{grid-template-columns:1fr 1fr}
       .midweek-meta div{border-right:0;border-bottom:1px solid var(--line);padding:22px 0}
       .midweek-meta div:nth-last-child(-n+2){border-bottom:0}
@@ -281,6 +296,8 @@
       h2{font-size:40px}
       .hero-lead{font-size:17px}
       .hero-meta{grid-template-columns:1fr 1fr;gap:18px}
+      .date-grid{grid-template-columns:1fr}
+      .date-card.featured{grid-column:auto}
       .welcome-card{min-height:440px;padding:26px}
       .welcome-copy{left:26px;right:26px;bottom:26px}
       .welcome-title{font-size:43px}
@@ -338,7 +355,6 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="#fall">查看秋季安排</a>
           <a class="btn btn-secondary" href="#first">第一次来会怎样？</a>
-          <a class="follow-link" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">Follow us · @ECCM_KC ↗</a>
         </div>
         <div class="hero-meta" aria-label="聚会概览">
           <div><span>第一次聚会</span><strong>8月21日</strong></div>
@@ -374,24 +390,31 @@
     <div class="container">
       <div class="kickoff-head">
         <div>
-          <div class="eyebrow">2026 秋季 · 从约翰福音第一章开始</div>
+          <div class="eyebrow">2026 秋季日历</div>
           <h2>这个秋季，<br>从 ECCM 开始。</h2>
         </div>
         <p>8月，我们先认识彼此；9月4日，一起从约翰福音第一章开始。无论哪一周第一次来，都欢迎你。</p>
       </div>
-      <div class="date-grid">
-        <article class="date-card featured">
-          <time datetime="2026-08-21">8月21日 · 周五</time>
-          <div><strong>秋季迎新</strong><p>晚餐相聚，认识 ECCM 和新朋友。</p></div>
-        </article>
-        <article class="date-card">
-          <time datetime="2026-08-28">8月28日 · 周五</time>
-          <div><strong>秋季活动</strong><p>轻松相聚，进一步认识彼此。</p></div>
-        </article>
-        <article class="date-card">
-          <time datetime="2026-09-04">9月4日 · 周五</time>
-          <div><strong>约翰福音 · 第一章</strong><p>从零开始；没有读经经验也可以参加。</p></div>
-        </article>
+      <div class="calendar-layout">
+        <div class="date-grid">
+          <article class="date-card featured">
+            <time datetime="2026-08-21">8月21日 · 周五</time>
+            <div class="date-mark" aria-hidden="true">21</div>
+            <div><strong>秋季迎新</strong><p>晚餐相聚，认识 ECCM 和新朋友。</p></div>
+          </article>
+          <article class="date-card">
+            <time datetime="2026-08-28">8月28日 · 周五</time>
+            <div><strong>秋季活动</strong><p>轻松相聚，进一步认识彼此。</p></div>
+          </article>
+          <article class="date-card">
+            <time datetime="2026-09-04">9月4日 · 周五</time>
+            <div><strong>约翰福音 · 第一章</strong><p>从零开始；没有读经经验也可以参加。</p></div>
+          </article>
+        </div>
+        <aside class="calendar-social">
+          <span>FOLLOW ECCM</span>
+          <div><strong>这周会发生什么？</strong><p>活动更新与临时通知会发布在 Instagram。</p><a href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">@ECCM_KC ↗</a></div>
+        </aside>
       </div>
     </div>
   </section>
@@ -400,8 +423,8 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">OUR 3S · SPIRITUAL · STUDY · SOCIAL</div>
-          <h2>信仰、认识、关系，<br>一起成长。</h2>
+          <div class="eyebrow">我们看重什么 · 3S</div>
+          <h2>三个方向，<br>一种共同生活。</h2>
         </div>
         <p>
           在信仰中成长，认识圣经，也建立真实关系。
@@ -448,7 +471,11 @@
         </div>
         <div class="schedule-line"></div>
         <div class="schedule-row">
-          <span>7:00</span><div><strong>Bible Study</strong><small>分组读经、讨论与提问</small></div>
+          <span>7:00</span><div><strong>Worship &amp; Icebreaker</strong><small>敬拜、破冰，也让新朋友融入</small></div>
+        </div>
+        <div class="schedule-line"></div>
+        <div class="schedule-row">
+          <span>7:30</span><div><strong>Bible Study</strong><small>分组读经、讨论与提问</small></div>
         </div>
         <div class="schedule-line"></div>
         <div class="schedule-row">
@@ -506,7 +533,7 @@
         <div class="midweek-intro">
           <div>
             <div class="eyebrow">WEDNESDAY · THE PILGRIM'S PROGRESS</div>
-            <h2>读一点，分享一点，<br>也一起祷告。</h2>
+            <h2>读一点，<br>分享一点，<br>一起祷告。</h2>
           </div>
           <p>我们正在读 John Bunyan 的《天路历程》。每周一小段，聊聊阅读和最近的生活。</p>
         </div>
