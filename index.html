@@ -239,7 +239,7 @@
     .midweek-note{margin-top:24px;background:var(--orange);color:#fff;border-radius:15px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:12px}
     .midweek-note a{font-weight:850;text-decoration:underline;text-underline-offset:4px}
 
-    .visit{padding:34px 0 112px}
+    .visit{padding:34px 0 38px}
     .visit-card{
       background:var(--orange);color:#fff;border-radius:32px;padding:54px;
       display:grid;grid-template-columns:.9fr 1.1fr;align-items:stretch;gap:42px
@@ -255,7 +255,7 @@
     .address-block strong{display:block;font-size:16px;margin-bottom:4px}
     .address-block span{font-size:14px;opacity:.88}
     .distance-note{display:inline-flex;align-items:center;margin-top:10px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.16);font-size:12px;font-weight:800}
-    .leo-section{padding:52px 0 0}
+    .leo-section{padding:0 0 72px}
     .leo-strip{background:var(--white);border:1px solid rgba(27,36,24,.07);border-radius:22px;padding:18px 20px;display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center}
     .leo-mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--ink);font-weight:900}
     .leo-strip strong{display:block;font-size:15px;margin-bottom:2px}
@@ -370,11 +370,11 @@
       .midweek-meta div:nth-last-child(-n+2){border-bottom:0}
       .midweek-note{align-items:flex-start;flex-direction:column;gap:8px}
       .schedule-row{grid-template-columns:68px 1fr}
-      .visit{padding:26px 0 64px}
+      .visit{padding:26px 0}
       .visit-card{padding:26px;gap:28px}
       .visit-card p{font-size:16px}
       .map-wrap,.map-wrap iframe{min-height:240px}
-      .leo-section{padding-top:30px}
+      .leo-section{padding:0 0 48px}
       .leo-strip{grid-template-columns:38px 1fr;padding:15px}
       .leo-mark{width:38px;height:38px}
       .leo-strip a{grid-column:1/-1;text-align:center}
@@ -415,7 +415,7 @@
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">UMKC · Kansas City</div>
-        <h1>探索信仰，<br><span class="accent">认识朋友，</span><br>一起成长。</h1>
+        <h1>探索信仰<br><span class="accent">认识朋友</span><br>一起成长</h1>
         <p class="hero-lead">
           ECCM 是面向大学生、访问学者和年轻人的中文基督徒团契。无论你已经相信基督，还是正在探索信仰，都欢迎你一起共进晚餐、探索圣经、认识朋友。
         </p>
@@ -453,7 +453,7 @@
       <div class="kickoff-head">
         <div>
           <div class="eyebrow">2026 秋季日历</div>
-          <h2>这个秋季，<br>从 ECCM 开始。</h2>
+          <h2>这个秋季<br>从 ECCM 开始</h2>
         </div>
       </div>
       <div class="calendar-layout">
@@ -508,7 +508,7 @@
     <div class="container friday-grid">
       <div>
         <div class="eyebrow light">FRIDAY BIBLE STUDY</div>
-        <h2>每周五，<br>从一顿晚餐开始。</h2>
+        <h2>每周五<br>从一顿晚餐开始</h2>
         <p class="dark-lead">
           2026 秋季，从约翰福音第一章开始。
         </p>
@@ -542,7 +542,7 @@
     <div class="container first-grid">
       <div class="first-copy">
         <div class="eyebrow">NEW HERE?</div>
-        <h2>第一次来，<br>不用懂规矩。</h2>
+        <h2>第一次来<br>不用懂规矩</h2>
         <p>
           不用报名，也不用先认识谁。自己来或带朋友都可以。
         </p>
@@ -585,7 +585,7 @@
       <details class="who-card">
         <summary><span>我们是谁</span><span>30 YEARS · 点击了解</span></summary>
         <div class="who-content">
-          <h2>三十年来，<br>陪学生走一段路。</h2>
+          <h2>三十年来<br>陪学生走一段路</h2>
           <p>ECCM 在 Kansas City 陪伴学生已有三十年。我们关心的不只是聚会，也关心初到一座城市、学习、友情、生活和信仰。</p>
         </div>
       </details>
@@ -613,22 +613,12 @@
     </div>
   </section>
 
-  <section class="leo-section" aria-label="联系 Leo">
-    <div class="container">
-      <div class="leo-strip">
-        <div class="leo-mark" aria-hidden="true">L</div>
-        <div><strong>有问题？联系 Leo。</strong><p>Leo Liu 是 ECCM 联系人，欢迎发短信。</p></div>
-        <a href="sms:+18017067979">Text Leo · 801-706-7979</a>
-      </div>
-    </div>
-  </section>
-
   <section class="visit" id="visit">
     <div class="container">
       <div class="visit-card">
         <div class="visit-copy">
           <div class="eyebrow light">COME THIS WEEK</div>
-          <h2>这周五，来一起吃晚餐吧。</h2>
+          <h2>这周五<br>来一起吃晚餐吧</h2>
           <p>Friday · 6:15–8:30 PM</p>
           <div class="address-block">
             <strong>Second Presbyterian Church</strong>
@@ -647,6 +637,16 @@
       </div>
     </div>
   </section>
+
+  <section class="leo-section" aria-label="联系 Leo">
+    <div class="container">
+      <div class="leo-strip">
+        <div class="leo-mark" aria-hidden="true">L</div>
+        <div><strong>有问题 联系 Leo</strong><p>Leo Liu 是 ECCM 联系人，欢迎发短信。</p></div>
+        <a href="sms:+18017067979">Text Leo · 801-706-7979</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -654,7 +654,7 @@
     <div class="footer-brand">ECCM</div>
     <div class="footer-copy">
       <span>Emmanuel Chinese Campus Ministry</span>
-      <span>Explore Faith · Meet People · Grow Together</span>
+      <span>Spiritual · Study · Social</span>
       <a href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">Instagram · @ECCM_KC</a>
       <span>© 2026 ECCM</span>
     </div>
