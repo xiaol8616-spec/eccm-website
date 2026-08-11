@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f4f0e4" />
-  <meta name="description" content="ECCM — 面向 UMKC 学生、访问学者与年轻人的中文基督徒团契。8月21日迎新，9月4日从约翰福音第一章开始查经。" />
+  <meta name="description" content="ECCM — 面向 UMKC 学生、访问学者与年轻人的中文基督徒团契。8月21日初次相识，8月28日秋季迎新。" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="ECCM | 2026 秋季 · 约翰福音" />
-  <meta property="og:description" content="探索信仰，认识朋友，一起成长。8月21日迎新，9月4日从约翰福音第一章开始。" />
+  <meta property="og:description" content="探索信仰，认识朋友，一起成长。8月21日初次相识，8月28日秋季迎新。" />
   <meta property="og:url" content="https://eccm-eight.vercel.app/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="ECCM | 2026 秋季 · 约翰福音" />
@@ -155,7 +155,7 @@
     }
 
     .strip{position:relative;background:var(--ink);color:#fff;padding:22px 0}
-    .strip:before{content:"";position:absolute;z-index:2;right:0;top:0;bottom:0;width:76px;background:linear-gradient(90deg,transparent,var(--ink) 68%);pointer-events:none}
+    .strip:before{display:none;content:"";position:absolute;z-index:2;right:0;top:0;bottom:0;width:76px;background:linear-gradient(90deg,transparent,var(--ink) 68%);pointer-events:none}
     .strip:after{display:none}
     .strip-inner{display:flex;justify-content:space-between;align-items:center;gap:22px;font-size:14px;font-weight:850;letter-spacing:.13em}
     .strip-inner span:first-child{font-size:16px}
@@ -187,9 +187,10 @@
     .values-section>.container{padding-top:58px;border-top:1px solid var(--line)}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
     .section-head p{max-width:500px;margin:0;color:#5d6859;font-size:16px}
-    .who-section{padding:8px 0 72px}
+    .who-section{padding:0 0 56px}
+    .who-section>.container{display:flex;justify-content:flex-end}
     .who-card{
-      width:168px;max-height:168px;margin:0 auto;color:#fff;overflow:hidden;border-radius:50%;
+      width:168px;max-height:168px;margin:0;color:#fff;overflow:hidden;border-radius:50%;
       background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.22),transparent 34%),linear-gradient(145deg,#30442b,#182117);
       border:1px solid rgba(255,255,255,.24);
       box-shadow:0 24px 60px rgba(27,36,24,.2),inset 0 1px 0 rgba(255,255,255,.18);
@@ -238,7 +239,7 @@
     .schedule-intro strong{font-size:22px;display:block;margin-bottom:5px}
     .schedule-intro span{color:#b7c3b3;font-size:13px}
     .schedule-row{display:grid;grid-template-columns:86px 1fr;gap:18px;align-items:start}
-    .schedule-row>span{color:var(--yellow);font-size:13px;font-weight:850;letter-spacing:.07em}
+    .schedule-row>span{color:var(--yellow);font-size:17px;font-weight:900;letter-spacing:.04em;line-height:1.2}
     .schedule-row strong{display:block;font-size:19px;margin-bottom:4px}
     .schedule-row small{color:#b7c3b3}
     .schedule-line{height:1px;background:rgba(255,255,255,.1);margin:22px 0}
@@ -343,6 +344,7 @@
       .midweek{padding:68px 0}
       .section-head{flex-direction:column;align-items:flex-start}
       .who-content{gap:24px}
+      .who-section>.container{justify-content:center}
       .calendar-layout{grid-template-columns:1fr}
       .date-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
       .date-card.featured{grid-row:auto;grid-column:1/3;min-height:250px}
@@ -616,11 +618,11 @@
           <article class="date-card featured">
             <time datetime="2026-08-21">8月21日 · 周五</time>
             <div class="date-mark" aria-hidden="true">21</div>
-            <div><strong>秋季迎新</strong><p>晚餐相聚，认识 ECCM 和新朋友。</p></div>
+            <div><strong>初次相识</strong><p>轻松认识一下，一起玩、一起聊聊。</p></div>
           </article>
           <article class="date-card">
             <time datetime="2026-08-28">8月28日 · 周五</time>
-            <div><strong>秋季活动</strong><p>一起活动，也继续认识彼此。</p></div>
+            <div><strong>秋季迎新</strong><p>正式欢迎新朋友，现场也准备了礼物。</p></div>
           </article>
           <article class="date-card">
             <time datetime="2026-09-04">9月4日 · 周五</time>
