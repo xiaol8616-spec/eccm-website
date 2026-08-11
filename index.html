@@ -5,8 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f4f0e4" />
   <meta name="description" content="ECCM — 面向 UMKC 学生、访问学者与年轻人的中文基督徒团契。8月21日迎新，9月4日从约翰福音第一章开始查经。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="ECCM | 2026 秋季 · 约翰福音" />
+  <meta property="og:description" content="探索信仰，认识朋友，一起成长。8月21日迎新，9月4日从约翰福音第一章开始。" />
+  <meta property="og:url" content="https://eccm-eight.vercel.app/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ECCM | 2026 秋季 · 约翰福音" />
+  <meta name="twitter:description" content="探索信仰，认识朋友，一起成长。欢迎 UMKC 学生、访问学者与年轻人。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23f0bd3a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='900' fill='%231b2418'%3EE%3C/text%3E%3C/svg%3E" />
   <title>ECCM | 2026 秋季 · 约翰福音</title>
-  <script>document.documentElement.classList.add('motion-ready')</script>
+  <script>document.documentElement.classList.add('motion-ready');setTimeout(()=>document.documentElement.classList.remove('motion-ready'),2500)</script>
   <style>
     :root{
       --ink:#1b2418;
@@ -35,6 +44,9 @@
     }
     a{color:inherit;text-decoration:none}
     button{font:inherit}
+    :where(a,button,summary):focus-visible{
+      outline:3px solid var(--yellow);outline-offset:4px;border-radius:10px
+    }
     .container{width:min(1160px,calc(100% - 40px));margin:0 auto}
 
     .motion-ready .hero .eyebrow,
@@ -144,7 +156,7 @@
 
     .strip{position:relative;background:var(--ink);color:#fff;padding:22px 0}
     .strip:before{content:"";position:absolute;z-index:2;right:0;top:0;bottom:0;width:76px;background:linear-gradient(90deg,transparent,var(--ink) 68%);pointer-events:none}
-    .strip:after{content:"→";position:absolute;z-index:3;right:12px;top:50%;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--ink);font-size:16px;font-weight:900;pointer-events:none;animation:strip-swipe-hint 4s ease-in-out infinite}
+    .strip:after{display:none}
     .strip-inner{display:flex;justify-content:space-between;align-items:center;gap:22px;font-size:14px;font-weight:850;letter-spacing:.13em}
     .strip-inner span:first-child{font-size:16px}
     .strip .dot{color:var(--yellow)}
@@ -416,6 +428,8 @@
       .welcome-verse{font-size:13px;line-height:1.5;margin-top:16px}
       .small-badge{right:16px;top:58px;padding:9px 12px}
       .strip{padding:17px 0}
+      .strip:before{display:block}
+      .strip:after{content:"→";position:absolute;z-index:3;right:12px;top:50%;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--ink);font-size:16px;font-weight:900;pointer-events:none;animation:strip-swipe-hint 4s ease-in-out infinite}
       .strip-inner{gap:17px;font-size:12px}
       .kickoff{padding:52px 0}
       .kickoff-head{gap:20px;margin-bottom:26px}
@@ -536,10 +550,10 @@
         <small>3S · Spiritual · Study · Social</small>
       </span>
     </a>
-    <button class="menu-btn" aria-label="打开菜单" aria-expanded="false">
+    <button class="menu-btn" aria-label="打开菜单" aria-expanded="false" aria-controls="primary-menu">
       <span></span><span></span>
     </button>
-    <div class="nav-links">
+    <div class="nav-links" id="primary-menu">
       <a href="#about">我们是谁</a>
       <a href="#fall">秋季日程</a>
       <a href="#friday">周五查经</a>
@@ -667,31 +681,31 @@
 
       <div class="faq">
         <div class="faq-item open">
-          <button class="faq-q" aria-expanded="true">
+          <button class="faq-q" aria-expanded="true" aria-controls="faq-answer-1" id="faq-question-1">
             <span>我不是基督徒，也可以来吗？</span><span>+</span>
           </button>
-          <div class="faq-a"><div><p>可以。你可以先听听、看看，也可以随时提问，不需要先有答案。</p></div></div>
+          <div class="faq-a" id="faq-answer-1" role="region" aria-labelledby="faq-question-1"><div><p>可以。你可以先听听、看看，也可以随时提问，不需要先有答案。</p></div></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
             <span>第一次来需要准备什么？</span><span>+</span>
           </button>
-          <div class="faq-a"><div><p>直接来就好，不用报名，也不用准备任何东西。</p></div></div>
+          <div class="faq-a" id="faq-answer-2" role="region" aria-labelledby="faq-question-2"><div><p>直接来就好，不用报名，也不用准备任何东西。</p></div></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
             <span>聚会使用什么语言？</span><span>+</span>
           </button>
-          <div class="faq-a"><div><p>主要使用中文。</p></div></div>
+          <div class="faq-a" id="faq-answer-3" role="region" aria-labelledby="faq-question-3"><div><p>主要使用中文。</p></div></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
             <span>地点在哪里？</span><span>+</span>
           </button>
-          <div class="faq-a"><div><p>地点是 Second Presbyterian Church：318 E 55th St, Kansas City, MO 64113。下方地图可以直接导航。</p></div></div>
+          <div class="faq-a" id="faq-answer-4" role="region" aria-labelledby="faq-question-4"><div><p>地点是 Second Presbyterian Church：318 E 55th St, Kansas City, MO 64113。下方地图可以直接导航。</p></div></div>
         </div>
       </div>
     </div>
@@ -827,12 +841,29 @@
   menuBtn.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+  });
+
+  const closeMenu = () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-label', '打开菜单');
+  };
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMenu();
+      menuBtn.focus();
+    }
+  });
+
+  document.addEventListener('click', event => {
+    if (navLinks.classList.contains('open') && !event.target.closest('.nav')) closeMenu();
   });
 
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+      closeMenu();
       if (link.getAttribute('href') === '#about') {
         document.querySelector('.who-card').open = true;
       }
