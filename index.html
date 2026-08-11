@@ -248,6 +248,12 @@
     .address-block{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.28)}
     .address-block strong{display:block;font-size:16px;margin-bottom:4px}
     .address-block span{font-size:14px;opacity:.88}
+    .distance-note{display:inline-flex;align-items:center;margin-top:10px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.16);font-size:12px;font-weight:800}
+    .leo-welcome{margin:24px 0 18px;padding:18px;border-radius:18px;background:rgba(27,36,24,.14);display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+    .leo-mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--ink);font-weight:900}
+    .leo-welcome strong{display:block;font-size:15px;margin-bottom:4px}
+    .leo-welcome p{margin:0 0 10px;font-size:13px!important;line-height:1.55;opacity:.9}
+    .leo-welcome a{font-size:13px;font-weight:850;text-decoration:underline;text-underline-offset:4px}
 
     footer{padding:40px 0 54px;border-top:1px solid var(--line)}
     .footer-inner{display:flex;justify-content:space-between;gap:30px;align-items:end}
@@ -310,6 +316,8 @@
       .visit{padding-bottom:82px}
       .visit-card{padding:30px}
       .map-wrap,.map-wrap iframe{min-height:300px}
+      .leo-welcome{grid-template-columns:38px 1fr;padding:15px}
+      .leo-mark{width:38px;height:38px}
     }
   </style>
 </head>
@@ -497,7 +505,7 @@
           <button class="faq-q" aria-expanded="true">
             <span>我不是基督徒，也可以来吗？</span><span>+</span>
           </button>
-          <div class="faq-a"><div><p>可以。欢迎先听、先看、提问，不需要预先认同。</p></div></div>
+          <div class="faq-a"><div><p>可以。欢迎先听、先看、提问，不需要先有答案。</p></div></div>
         </div>
 
         <div class="faq-item">
@@ -555,10 +563,19 @@
           <div class="address-block">
             <strong>Second Presbyterian Church</strong>
             <span>318 E 55th St, Kansas City, MO 64113</span>
+            <div class="distance-note">从 UMKC 步行约 15 分钟</div>
           </div>
           <p class="small-copy">ECCM 使用中文聚会；场地借自 Second Presbyterian Church，并非该教会事工。</p>
+          <div class="leo-welcome">
+            <div class="leo-mark" aria-hidden="true">L</div>
+            <div>
+              <strong>第一次来？欢迎联系 Leo。</strong>
+              <p>Leo Liu 是 ECCM 联系人，也接待周三聚会。想先问问、确认地点或告诉我们你会来，都可以发短信。</p>
+              <a href="sms:+18017067979">Text Leo · 801-706-7979</a>
+            </div>
+          </div>
           <div class="visit-actions">
-            <a class="btn btn-white" href="https://www.google.com/maps/search/?api=1&amp;query=Second+Presbyterian+Church+318+E+55th+St+Kansas+City+MO+64113" target="_blank" rel="noopener">在 Google Maps 打开</a>
+            <a class="btn btn-white" href="https://www.google.com/maps/dir/?api=1&amp;origin=University+of+Missouri-Kansas+City&amp;destination=Second+Presbyterian+Church+318+E+55th+St+Kansas+City+MO+64113&amp;travelmode=walking" target="_blank" rel="noopener">从 UMKC 步行导航</a>
             <a class="btn btn-social" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">关注 Instagram · @ECCM_KC ↗</a>
           </div>
         </div>
@@ -583,6 +600,16 @@
 </footer>
 
 <script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('pageshow', () => {
+    if (window.location.hash === '#first') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      window.scrollTo(0, 0);
+    } else if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  });
+
   const menuBtn = document.querySelector('.menu-btn');
   const navLinks = document.querySelector('.nav-links');
 
