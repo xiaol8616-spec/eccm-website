@@ -156,24 +156,30 @@
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
     .section-head p{max-width:500px;margin:0;color:#5d6859;font-size:16px}
     .who-section{padding:8px 0 72px}
-    .who-card{margin:0;color:#fff}
-    .who-card summary{
-      position:relative;width:168px;height:168px;margin:0 auto;list-style:none;cursor:pointer;
-      border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
-      text-align:center;font-weight:850;overflow:hidden;
+    .who-card{
+      width:168px;max-height:168px;margin:0 auto;color:#fff;overflow:hidden;border-radius:50%;
       background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.22),transparent 34%),linear-gradient(145deg,#30442b,#182117);
       border:1px solid rgba(255,255,255,.24);
       box-shadow:0 24px 60px rgba(27,36,24,.2),inset 0 1px 0 rgba(255,255,255,.18);
-      transition:transform .25s ease,box-shadow .25s ease
+      transition:width .42s cubic-bezier(.2,.8,.2,1),max-height .48s cubic-bezier(.2,.8,.2,1),border-radius .38s ease,box-shadow .3s ease
     }
-    .who-card summary:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 30px 70px rgba(27,36,24,.26),inset 0 1px 0 rgba(255,255,255,.2)}
+    .who-card[open]{width:100%;max-height:560px;border-radius:28px;background:var(--green);box-shadow:0 28px 70px rgba(27,36,24,.2)}
+    .who-card summary{
+      position:relative;width:100%;height:168px;margin:0;list-style:none;cursor:pointer;
+      border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
+      text-align:center;font-weight:850;overflow:hidden;
+      transition:height .38s ease,border-radius .38s ease,padding .38s ease
+    }
+    .who-card:not([open]):hover{transform:translateY(-5px) scale(1.02);box-shadow:0 30px 70px rgba(27,36,24,.26),inset 0 1px 0 rgba(255,255,255,.2)}
+    .who-card[open] summary{height:88px;padding:0 34px;border-radius:0;flex-direction:row;justify-content:flex-start;gap:14px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12)}
     .who-card summary::-webkit-details-marker{display:none}
     .who-card summary:before{content:"";position:absolute;right:24px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 6px rgba(240,189,58,.13)}
     .who-card summary:after{content:"＋";position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:var(--yellow);font-size:18px;line-height:1}
-    .who-card[open] summary:after{content:"−"}
+    .who-card[open] summary:before{right:70px;top:38px;width:10px;height:10px}
+    .who-card[open] summary:after{content:"−";left:auto;right:34px;bottom:auto;top:32px;transform:none;font-size:23px}
     .who-card summary span:first-child{font-size:25px;letter-spacing:-.03em}
     .who-card summary span:last-child{font-size:9px;letter-spacing:.13em;color:#d8e1d4}
-    .who-content{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;margin-top:24px;padding:34px;background:var(--green);border-radius:28px;box-shadow:0 24px 65px rgba(27,36,24,.14)}
+    .who-content{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;margin:0;padding:34px;background:transparent}
     .who-content h2{font-size:clamp(36px,4vw,54px)}
     .who-content p{margin:0;color:#cbd4c8;font-size:17px;line-height:1.7;max-width:620px}
     .values-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:26px;color:#697463;font-size:11px;letter-spacing:.14em;font-weight:850}
@@ -245,7 +251,14 @@
     .midweek-shell{background:var(--white);border:1px solid rgba(27,36,24,.06);border-radius:28px;padding:46px}
     .midweek-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:end;padding-bottom:30px;border-bottom:1px solid var(--line)}
     .midweek-intro h2{font-size:clamp(46px,5.2vw,72px)}
-    .midweek-intro p{margin:0;color:#5a6556;font-size:18px;max-width:620px}
+    .midweek-day{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;padding:9px 13px;border-radius:999px;background:var(--yellow);color:var(--ink);box-shadow:0 10px 24px rgba(143,100,8,.12)}
+    .midweek-day strong{font-size:17px;line-height:1;letter-spacing:.08em}
+    .midweek-day span{padding-left:11px;border-left:1px solid rgba(27,36,24,.25);font-size:12px;font-weight:850;letter-spacing:.1em}
+    .midweek-book{margin-bottom:16px;color:#7b8676;font-size:10px;letter-spacing:.14em;font-weight:850}
+    .midweek-points{list-style:none;margin:0;padding:0;display:grid;gap:13px;color:#5a6556;font-size:16px}
+    .midweek-points li{position:relative;padding:0 0 13px 24px;border-bottom:1px solid var(--line);line-height:1.55}
+    .midweek-points li:last-child{padding-bottom:0;border-bottom:0}
+    .midweek-points li:before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(223,135,37,.1)}
     .midweek-meta{display:grid;grid-template-columns:.75fr 1.55fr 1fr 1fr;gap:0;margin-top:10px}
     .midweek-meta div{padding:22px 20px 2px;border-right:1px solid var(--line)}
     .midweek-meta div:first-child{padding-left:0}
@@ -354,7 +367,8 @@
       .midweek-shell{padding:34px}
       .midweek-intro{grid-template-columns:.85fr 1.15fr;gap:30px}
       .midweek-intro h2{font-size:48px}
-      .midweek-intro p{font-size:16px}
+      .midweek-day strong{font-size:16px}
+      .midweek-points{font-size:15px;gap:11px}
       .midweek-meta div{padding:18px 0}
       .visit-card{grid-template-columns:.9fr 1.1fr;padding:32px;gap:26px}
       .venue-note{grid-column:2;margin:-18px 2px 0}
@@ -425,18 +439,29 @@
       .faq-q span:last-child{width:28px;height:28px}
       .faq-a p{padding:0 16px 14px}
       .who-section{padding-bottom:46px}
-      .who-card summary{width:142px;height:142px;gap:6px}
+      .who-card{width:142px;max-height:142px}
+      .who-card[open]{width:100%;max-height:620px;border-radius:24px}
+      .who-card summary{height:142px;gap:6px}
+      .who-card[open] summary{height:76px;padding:0 22px;gap:10px}
       .who-card summary:before{right:20px;top:18px;width:10px;height:10px}
       .who-card summary:after{left:50%;right:auto;top:auto;bottom:14px;font-size:17px}
+      .who-card[open] summary:before{right:54px;top:33px;width:9px;height:9px}
+      .who-card[open] summary:after{left:auto;right:22px;top:25px;bottom:auto;transform:none;font-size:21px}
       .who-card summary span:first-child{font-size:22px;padding:0}
       .who-card summary span:last-child{font-size:8px;text-align:center;padding:0}
-      .who-content{margin-top:18px;padding:24px 22px 26px;border-radius:24px}
+      .who-card[open] summary span:first-child{font-size:20px}
+      .who-card[open] summary span:last-child{text-align:left}
+      .who-content{margin:0;padding:24px 22px 26px}
       .who-content p{font-size:15px}
       .midweek{padding:46px 0}
       .midweek-shell{padding:23px}
       .midweek-intro{gap:19px;padding-bottom:21px}
       .midweek-intro h2{font-size:38px}
-      .midweek-intro p{font-size:16px}
+      .midweek-day{margin-bottom:12px;padding:8px 11px}
+      .midweek-day strong{font-size:16px}
+      .midweek-book{margin-bottom:13px;font-size:9px}
+      .midweek-points{font-size:15px;gap:10px}
+      .midweek-points li{padding:0 0 10px 22px}
       .midweek-meta{grid-template-columns:1fr 1fr}
       .midweek-meta div,.midweek-meta div:nth-last-child(-n+2){border-bottom:1px solid var(--line);padding:14px 9px}
       .midweek-meta div:nth-child(odd){padding-left:0;border-right:1px solid var(--line)}
@@ -674,10 +699,15 @@
       <div class="midweek-shell">
         <div class="midweek-intro">
           <div>
-            <div class="eyebrow">WEDNESDAY · THE PILGRIM'S PROGRESS</div>
+            <div class="midweek-day"><strong>WEDNESDAY</strong><span>周三</span></div>
+            <div class="midweek-book">THE PILGRIM'S PROGRESS · 天路历程</div>
             <h2>读一点<br>分享一点<br>一起祷告</h2>
           </div>
-          <p>我们正在读 John Bunyan 的《天路历程》。每周读一小段，分享阅读中的领受和最近的生活，也为彼此祷告。现场会准备零食。</p>
+          <ul class="midweek-points">
+            <li>每周读一小段 John Bunyan 的《天路历程》</li>
+            <li>分享阅读中的领受和最近的生活</li>
+            <li>为彼此祷告，现场也会准备零食</li>
+          </ul>
         </div>
         <div class="midweek-meta">
           <div><span>时间</span><strong>周三<br>6:30–8:00 PM</strong></div>
