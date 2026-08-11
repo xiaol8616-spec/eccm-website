@@ -300,32 +300,79 @@
     }
     @media (max-width:560px){
       .container{width:min(100% - 26px,1160px)}
-      h1{font-size:53px}
-      h2{font-size:40px}
-      .hero-lead{font-size:17px}
+      h1{font-size:49px}
+      h2{font-size:38px}
+      .nav{height:68px}
+      .nav-links{top:68px}
+      .hero{padding:38px 0 52px}
+      .hero-grid{gap:34px}
+      .hero-lead{font-size:16px;margin:22px 0 24px}
+      .hero-actions{gap:9px}
+      .btn{min-height:46px;padding:0 18px}
       .date-grid{grid-template-columns:1fr}
       .date-card.featured{grid-column:auto}
-      .welcome-card{min-height:440px;padding:26px}
-      .welcome-copy{left:26px;right:26px;bottom:26px}
-      .welcome-title{font-size:43px}
-      .welcome-verse{font-size:14px;margin-top:20px}
-      .small-badge{right:18px;top:66px}
-      .midweek{padding:58px 0}
-      .midweek-shell{padding:30px}
-      .midweek-intro{gap:28px;padding-bottom:28px}
-      .midweek-intro h2{font-size:42px}
-      .midweek-meta{grid-template-columns:1fr}
-      .midweek-meta div,.midweek-meta div:nth-last-child(-n+2){border-bottom:1px solid var(--line);padding:18px 0}
-      .midweek-meta div:last-child{border-bottom:0}
+      .welcome-card{min-height:360px;padding:24px}
+      .welcome-copy{left:24px;right:24px;bottom:24px}
+      .welcome-title{font-size:38px}
+      .welcome-verse{font-size:13px;line-height:1.5;margin-top:16px}
+      .small-badge{right:16px;top:58px;padding:9px 12px}
+      .strip{padding:17px 0}
+      .strip-inner{gap:17px;font-size:12px}
+      .kickoff{padding:58px 0}
+      .kickoff-head{gap:20px;margin-bottom:26px}
+      .kickoff-head p{font-size:15px}
+      .date-grid,.calendar-layout{gap:10px}
+      .date-card,.date-card.featured{min-height:0;padding:20px;gap:15px}
+      .date-card.featured{display:grid;grid-template-columns:1fr auto;align-items:end}
+      .date-card.featured time{grid-column:1/-1}
+      .date-mark{font-size:58px;grid-column:2;grid-row:2;align-self:end}
+      .date-card strong{font-size:22px}
+      .calendar-social{min-height:0;padding:22px;gap:32px}
+      .calendar-social strong{font-size:29px;margin-bottom:10px}
+      .calendar-social p{margin-bottom:17px}
+      .section{padding:60px 0}
+      .values-section{padding:52px 0 58px}
+      .values-head{margin-bottom:15px}
+      .values-head span:last-child{display:none}
+      .cards-3{gap:10px}
+      .info-card{min-height:0;padding:20px}
+      .info-card .num{margin-bottom:17px}
+      .info-card h3{font-size:22px;margin-bottom:7px}
+      .friday-grid,.first-grid{gap:30px}
+      .dark-lead{margin-top:17px}
+      .schedule-card{padding:23px}
+      .schedule-intro{margin-bottom:20px;padding-bottom:18px}
+      .schedule-line{margin:16px 0}
+      .first-copy p{font-size:16px}
+      .faq{gap:9px}
+      .faq-q{padding:16px 17px;font-size:15px}
+      .faq-a p{padding:0 17px 16px}
+      .who-section{padding-bottom:52px}
+      .who-card summary{padding:20px;gap:12px}
+      .who-card summary span:first-child{font-size:21px}
+      .who-card summary span:last-child{font-size:9px;text-align:right}
+      .midweek{padding:50px 0}
+      .midweek-shell{padding:26px}
+      .midweek-intro{gap:22px;padding-bottom:24px}
+      .midweek-intro h2{font-size:40px}
+      .midweek-intro p{font-size:16px}
+      .midweek-meta{grid-template-columns:1fr 1fr}
+      .midweek-meta div,.midweek-meta div:nth-last-child(-n+2){border-bottom:1px solid var(--line);padding:16px 10px}
+      .midweek-meta div:nth-child(odd){padding-left:0;border-right:1px solid var(--line)}
+      .midweek-meta div:nth-child(even){padding-right:0}
+      .midweek-meta div:nth-last-child(-n+2){border-bottom:0}
       .midweek-note{align-items:flex-start;flex-direction:column;gap:8px}
       .schedule-row{grid-template-columns:68px 1fr}
-      .visit{padding-bottom:82px}
-      .visit-card{padding:30px}
-      .map-wrap,.map-wrap iframe{min-height:300px}
-      .leo-section{padding-top:36px}
+      .visit{padding:26px 0 64px}
+      .visit-card{padding:26px;gap:28px}
+      .visit-card p{font-size:16px}
+      .map-wrap,.map-wrap iframe{min-height:240px}
+      .leo-section{padding-top:30px}
       .leo-strip{grid-template-columns:38px 1fr;padding:15px}
       .leo-mark{width:38px;height:38px}
       .leo-strip a{grid-column:1/-1;text-align:center}
+      footer{padding:32px 0 42px}
+      .footer-brand{font-size:42px}
     }
   </style>
 </head>
@@ -610,14 +657,24 @@
 
 <script>
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('pageshow', () => {
-    if (window.location.hash === '#first') {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
+
+  // Mobile browsers may restore an old anchor or scroll position when the site
+  // is reopened. A fresh visit should always begin with the welcome screen.
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  const resetInitialScroll = () => {
+    const previousBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => {
       window.scrollTo(0, 0);
-    } else if (!window.location.hash) {
-      window.scrollTo(0, 0);
-    }
-  });
+      document.documentElement.style.scrollBehavior = previousBehavior;
+    });
+  };
+  resetInitialScroll();
+  window.addEventListener('pageshow', resetInitialScroll);
+  window.addEventListener('load', resetInitialScroll, { once: true });
 
   const menuBtn = document.querySelector('.menu-btn');
   const navLinks = document.querySelector('.nav-links');
