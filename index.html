@@ -91,14 +91,6 @@
     .btn-white{background:#fff;color:var(--ink)}
     .btn-social{background:var(--yellow);color:var(--ink)}
     .btn-outline-light{border:1px solid rgba(255,255,255,.5);color:#fff}
-    .hero-meta{
-      margin-top:32px;padding-top:22px;border-top:1px solid var(--line);
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:660px
-    }
-    .hero-meta div{display:flex;flex-direction:column;gap:3px}
-    .hero-meta span{font-size:11px;color:#84907e;text-transform:uppercase;letter-spacing:.12em;font-weight:800}
-    .hero-meta strong{font-size:14px}
-
     .hero-visual{position:relative}
     .welcome-card{
       position:relative;
@@ -156,9 +148,11 @@
     .calendar-social a{align-self:flex-start;background:var(--yellow);color:var(--ink);padding:12px 16px;border-radius:999px;font-size:13px;font-weight:850}
 
     .section{padding:94px 0}
+    .values-section{padding:78px 0 84px}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
     .section-head p{max-width:500px;margin:0;color:#5d6859;font-size:16px}
-    .who-card{margin-bottom:28px;background:var(--green);color:#fff;border-radius:24px;overflow:hidden}
+    .who-section{padding:0 0 72px}
+    .who-card{margin:0;background:var(--green);color:#fff;border-radius:24px;overflow:hidden}
     .who-card summary{list-style:none;cursor:pointer;padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:24px;font-weight:850}
     .who-card summary::-webkit-details-marker{display:none}
     .who-card summary span:first-child{font-size:24px;letter-spacing:-.02em}
@@ -282,7 +276,6 @@
       .menu-btn{display:block}
       .hero{padding-top:56px}
       .hero-grid,.friday-grid,.first-grid,.kickoff-head,.midweek-intro,.who-content{grid-template-columns:1fr;gap:46px}
-      .hero-meta{grid-template-columns:1fr 1fr 1fr}
       .welcome-card{min-height:450px}
       .section{padding:82px 0}
       .midweek{padding:68px 0}
@@ -310,7 +303,6 @@
       h1{font-size:53px}
       h2{font-size:40px}
       .hero-lead{font-size:17px}
-      .hero-meta{grid-template-columns:1fr 1fr;gap:18px}
       .date-grid{grid-template-columns:1fr}
       .date-card.featured{grid-column:auto}
       .welcome-card{min-height:440px;padding:26px}
@@ -377,11 +369,6 @@
           <a class="btn btn-primary" href="#fall">查看秋季安排</a>
           <a class="btn btn-secondary" href="#first">第一次来会怎样？</a>
         </div>
-        <div class="hero-meta" aria-label="聚会概览">
-          <div><span>第一次聚会</span><strong>8月21日</strong></div>
-          <div><span>时间</span><strong>6:15–8:30 PM</strong></div>
-          <div><span>查经开始</span><strong>9月4日</strong></div>
-        </div>
       </div>
 
       <div class="hero-visual" aria-hidden="true">
@@ -440,16 +427,8 @@
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="section values-section" id="values">
     <div class="container">
-      <details class="who-card">
-        <summary><span>我们是谁</span><span>点击了解 ECCM · 30 YEARS ＋</span></summary>
-        <div class="who-content">
-          <h2>三十年来，<br>陪学生走一段路。</h2>
-          <p>ECCM 在 Kansas City 陪伴学生已有三十年。我们关心的不只是聚会，也关心初到一座城市、学习、友情、生活和信仰。</p>
-        </div>
-      </details>
-
       <div class="values-head"><span>我们看重什么</span><span>3S · 信仰成长 · 认识信仰 · 一起生活</span></div>
 
       <div class="cards-3">
@@ -545,6 +524,18 @@
           <div class="faq-a"><div><p>地点是 Second Presbyterian Church：318 E 55th St, Kansas City, MO 64113。下方地图可以直接导航。</p></div></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="who-section" id="about">
+    <div class="container">
+      <details class="who-card">
+        <summary><span>我们是谁</span><span>点击了解 ECCM · 30 YEARS ＋</span></summary>
+        <div class="who-content">
+          <h2>三十年来，<br>陪学生走一段路。</h2>
+          <p>ECCM 在 Kansas City 陪伴学生已有三十年。我们关心的不只是聚会，也关心初到一座城市、学习、友情、生活和信仰。</p>
+        </div>
+      </details>
     </div>
   </section>
 
