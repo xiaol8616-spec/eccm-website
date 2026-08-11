@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f4f0e4" />
-  <meta name="description" content="ECCM — 面向 UMKC 学生、访问学者与年轻人的中文基督徒团契。Fall 2026 从零开始学习约翰福音。" />
+  <meta name="description" content="ECCM — 面向 UMKC 学生、访问学者与年轻人的中文基督徒团契。8月21日迎新，9月4日从约翰福音第一章开始查经。" />
   <title>ECCM | Fall 2026 · 约翰福音</title>
   <style>
     :root{
@@ -80,6 +80,8 @@
       max-width:680px;margin:28px 0 28px;color:#4f5a4b;font-size:19px
     }
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .follow-link{display:inline-flex;align-items:center;padding:0 8px;font-size:13px;font-weight:800;color:#596454}
+    .follow-link:hover{text-decoration:underline;text-underline-offset:4px}
     .btn{
       min-height:50px;padding:0 22px;border-radius:999px;
       display:inline-flex;align-items:center;justify-content:center;
@@ -125,7 +127,7 @@
     .welcome-title{font-size:58px;line-height:.93;font-weight:900;letter-spacing:-.055em;max-width:460px}
     .welcome-note{margin-top:22px;color:#cad4c6;font-size:14px;max-width:410px}
     .small-badge{
-      position:absolute;z-index:2;right:-14px;bottom:80px;
+      position:absolute;z-index:2;right:24px;top:74px;
       background:var(--white);color:var(--ink);padding:12px 15px;border-radius:999px;
       font-size:12px;font-weight:800;box-shadow:0 15px 35px rgba(0,0,0,.14)
     }
@@ -133,6 +135,16 @@
     .strip{background:var(--ink);color:#fff;padding:17px 0}
     .strip-inner{display:flex;justify-content:space-between;gap:18px;font-size:12px;font-weight:850;letter-spacing:.16em}
     .strip .dot{color:var(--yellow)}
+
+    .kickoff{padding:96px 0;background:var(--paper-2)}
+    .kickoff-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:end;margin-bottom:38px}
+    .kickoff-head p{margin:0;color:#596454;font-size:17px;max-width:600px}
+    .date-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .date-card{background:var(--white);border:1px solid rgba(27,36,24,.06);border-radius:22px;padding:26px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
+    .date-card.featured{background:var(--yellow)}
+    .date-card time{font-size:12px;letter-spacing:.12em;font-weight:850;color:#687263}
+    .date-card strong{display:block;font-size:26px;line-height:1.1;margin-bottom:8px}
+    .date-card p{margin:0;color:#596454;font-size:14px}
 
     .section{padding:112px 0}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
@@ -159,20 +171,6 @@
     .schedule-row small{color:#b7c3b3}
     .schedule-line{height:1px;background:rgba(255,255,255,.1);margin:22px 0}
 
-
-    .activities{background:var(--paper)}
-    .activity-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:44px}
-    .activity-main,.activity-side{border-radius:26px;padding:34px}
-    .activity-main{background:var(--yellow);min-height:330px;display:flex;flex-direction:column;justify-content:space-between}
-    .activity-side{background:var(--white);border:1px solid rgba(27,36,24,.06);display:grid;gap:0}
-    .activity-main .label,.activity-item .label{font-size:11px;letter-spacing:.13em;font-weight:850;color:#65705f}
-    .activity-main h3{font-size:38px;max-width:560px}
-    .activity-main p{margin:14px 0 0;max-width:570px;color:#4f594a}
-    .activity-item{padding:20px 0;border-bottom:1px solid var(--line)}
-    .activity-item:first-child{padding-top:0}
-    .activity-item:last-child{padding-bottom:0;border-bottom:0}
-    .activity-item strong{display:block;font-size:19px;margin:4px 0}
-    .activity-item p{margin:0;color:#65705f;font-size:14px}
 
     .first-grid{display:grid;grid-template-columns:.83fr 1.17fr;gap:74px;align-items:start}
     .first-copy p{font-size:18px;color:#53604f;max-width:520px}
@@ -260,11 +258,13 @@
       .nav-links.open{display:flex}
       .menu-btn{display:block}
       .hero{padding-top:56px}
-      .hero-grid,.friday-grid,.activity-grid,.first-grid,.midweek-grid,.church-inner{grid-template-columns:1fr;gap:46px}
+      .hero-grid,.friday-grid,.first-grid,.midweek-grid,.church-inner,.kickoff-head{grid-template-columns:1fr;gap:46px}
       .hero-meta{grid-template-columns:1fr 1fr 1fr}
       .welcome-card{min-height:450px}
       .section{padding:82px 0}
       .section-head{flex-direction:column;align-items:flex-start}
+      .date-grid{grid-template-columns:1fr}
+      .date-card{min-height:180px}
       .cards-3{grid-template-columns:1fr}
       .info-card{min-height:260px}
       .info-card .num{margin-bottom:42px}
@@ -282,7 +282,7 @@
       .welcome-card{min-height:400px;padding:26px}
       .welcome-copy{left:26px;right:26px;bottom:26px}
       .welcome-title{font-size:46px}
-      .small-badge{right:-5px;bottom:66px}
+      .small-badge{right:18px;top:66px}
       .midweek-card{min-height:350px;padding:30px}
       .midweek-card .big{font-size:30px}
       .detail-panel{padding:10px 4px}
@@ -310,10 +310,11 @@
     </button>
     <div class="nav-links">
       <a href="#about">关于我们</a>
+      <a href="#fall">秋季日程</a>
       <a href="#friday">周五查经</a>
-      <a href="#activities">活动</a>
       <a href="#first">第一次来</a>
       <a href="#midweek">周三聚会</a>
+      <a href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">Follow us</a>
       <a href="#visit" class="nav-cta">这周来看看</a>
     </div>
   </nav>
@@ -329,13 +330,14 @@
           ECCM 是面向大学生、访问学者和年轻人的中文基督徒团契。无论你已经是基督徒，还是正在探索基督信仰，都欢迎你来吃饭、认识朋友、一起读圣经。
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#visit">我想来看看</a>
+          <a class="btn btn-primary" href="#fall">查看秋季安排</a>
           <a class="btn btn-secondary" href="#first">第一次来会怎样？</a>
+          <a class="follow-link" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">Follow us · @ECCM_KC ↗</a>
         </div>
         <div class="hero-meta" aria-label="聚会概览">
-          <div><span>主要聚会</span><strong>每周五</strong></div>
+          <div><span>第一次聚会</span><strong>8月21日</strong></div>
           <div><span>时间</span><strong>6:15–8:30 PM</strong></div>
-          <div><span>形式</span><strong>晚餐 · 查经 · 交流</strong></div>
+          <div><span>查经开始</span><strong>9月4日</strong></div>
         </div>
       </div>
 
@@ -359,6 +361,32 @@
       <span>SPIRITUAL</span><span class="dot">•</span>
       <span>STUDY</span><span class="dot">•</span>
       <span>SOCIAL</span>
+    </div>
+  </section>
+
+  <section class="kickoff" id="fall">
+    <div class="container">
+      <div class="kickoff-head">
+        <div>
+          <div class="eyebrow">FALL 2026 · START HERE</div>
+          <h2>这个秋季，<br>从这里开始。</h2>
+        </div>
+        <p>第一次来可以从任何一周开始。8月先认识大家，9月4日从约翰福音第一章正式开始查经。</p>
+      </div>
+      <div class="date-grid">
+        <article class="date-card featured">
+          <time datetime="2026-08-21">AUG 21 · FRIDAY</time>
+          <div><strong>迎新 · Orientation</strong><p>认识 ECCM、一起吃饭，也认识这个秋季会同行的新朋友。</p></div>
+        </article>
+        <article class="date-card">
+          <time datetime="2026-08-28">AUG 28 · FRIDAY</time>
+          <div><strong>秋季活动</strong><p>一起参与活动，在轻松的环境中认识彼此。</p></div>
+        </article>
+        <article class="date-card">
+          <time datetime="2026-09-04">SEP 04 · FRIDAY</time>
+          <div><strong>约翰福音 · 第一章</strong><p>从零开始读约翰福音；没有读经或教会背景也可以参加。</p></div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -419,46 +447,6 @@
         <div class="schedule-line"></div>
         <div class="schedule-row">
           <span>8:15</span><div><strong>Prayer &amp; Hangout</strong><small>祷告、分享、自由聊天</small></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section activities" id="activities">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">MORE THAN FRIDAY</div>
-          <h2>不只是查经，<br>也一起经历生活。</h2>
-        </div>
-        <p>周五查经是固定聚会，但 ECCM 的生活不只停在周五。我们也一起吃饭、出游、过节，陪伴彼此的校园生活。</p>
-      </div>
-
-      <div class="activity-grid">
-        <div class="activity-main">
-          <div class="label">LIFE TOGETHER</div>
-          <div>
-            <h3>不只每周见一次，<br>也一起经历生活。</h3>
-            <p>迎新、聚餐、户外和节日活动，让我们在查经之外真正认识彼此。</p>
-          </div>
-        </div>
-        <div class="activity-side">
-          <div class="activity-item">
-            <div class="label">WELCOME</div>
-            <strong>迎新与新朋友</strong>
-            <p>第一次来不需要认识谁，我们会带你认识大家。</p>
-          </div>
-          <div class="activity-item">
-            <div class="label">MEALS</div>
-            <strong>聚餐与节日</strong>
-            <p>一起吃饭、庆祝节日，也分享各自的生活。</p>
-          </div>
-          <div class="activity-item">
-            <div class="label">OUTDOORS</div>
-            <strong>出游与户外</strong>
-            <p>走出校园、一起探索 Kansas City，也让关系自然成长。</p>
-          </div>
         </div>
       </div>
     </div>
