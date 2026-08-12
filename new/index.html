@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f0e4" />
+  <meta name="description" content="第一次来 ECCM？留下联系方式，我们会和你联系。" />
+  <title>第一次来 ECCM？ | New Here</title>
+  <style>
+    :root{--ink:#1b2418;--muted:#687263;--paper:#f4f0e4;--white:#fffdf8;--yellow:#f0bd3a;--orange:#df8725;--green:#233020;--line:rgba(27,36,24,.13)}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}.container{width:min(1050px,calc(100% - 32px));margin:auto}
+    header{height:72px;display:flex;align-items:center;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.08em}.mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);font-size:18px}.back{font-size:13px;font-weight:800;padding:10px 15px;border:1px solid var(--line);border-radius:999px}
+    main{padding:58px 0 80px}.grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:54px;align-items:start}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:900;color:var(--orange);margin-bottom:18px}.intro{position:sticky;top:30px}.intro h1{font-size:clamp(46px,6vw,72px);letter-spacing:-.055em;line-height:.98;margin:0 0 24px}.intro p{font-size:17px;color:#52604e;margin:0 0 24px}.fact{padding:18px 0;border-top:1px solid var(--line);font-size:14px}.fact strong{display:block;margin-bottom:3px}.fact span{color:var(--muted)}
+    .card{background:var(--white);border-radius:28px;padding:34px;box-shadow:0 22px 60px rgba(27,36,24,.1)}.card h2{font-size:27px;letter-spacing:-.035em;margin:0 0 6px}.card-lead{margin:0 0 28px;color:var(--muted);font-size:14px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}label,legend{font-size:13px;font-weight:850}label span,legend span{color:var(--orange)}input,select,textarea{width:100%;min-height:50px;border:1px solid rgba(27,36,24,.2);border-radius:13px;background:#fff;padding:12px 14px;color:var(--ink);font:inherit;font-size:16px}textarea{min-height:116px;resize:vertical}input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}.hint{font-size:11px;color:var(--muted)}fieldset{border:0;padding:0;margin:0}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice label{display:flex;align-items:center;justify-content:center;min-height:46px;padding:8px;border:1px solid rgba(27,36,24,.18);border-radius:12px;text-align:center;cursor:pointer;font-size:12px}.choice input:checked+label{background:var(--green);color:#fff;border-color:var(--green)}.privacy{font-size:11px;color:var(--muted);margin:22px 0 14px}.submit{width:100%;min-height:54px;border:0;border-radius:999px;background:var(--green);color:#fff;font:inherit;font-weight:900;cursor:pointer}.submit:disabled{opacity:.6;cursor:wait}.status{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13px}.status.error{display:block;background:#fff0e7;color:#7b2f00}.trap{position:absolute;left:-9999px}
+    .success{display:none;text-align:center;padding:34px 4px}.success.show{display:block}.success-mark{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;background:var(--yellow);font-size:28px;font-weight:900}.success h2{font-size:35px}.success p{color:var(--muted);max-width:480px;margin:12px auto 24px}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.btn{min-height:46px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center;font-size:13px;font-weight:850}.btn.primary{background:var(--green);color:#fff}.btn.secondary{border:1px solid var(--line)}
+    @media(max-width:760px){header{height:64px}main{padding:34px 0 54px}.grid{grid-template-columns:1fr;gap:28px}.intro{position:static}.intro h1{font-size:48px}.intro p{font-size:16px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.card{padding:23px;border-radius:22px}.fields{grid-template-columns:1fr;gap:17px}.field.full{grid-column:auto}.choices{grid-template-columns:1fr 1fr}.choice label{min-height:48px}.success{padding:22px 0}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header><div class="container nav"><a class="brand" href="/"><span class="mark">E</span>ECCM</a><a class="back" href="/">返回首页</a></div></header>
+  <main><div class="container grid">
+    <section class="intro"><div class="eyebrow">NEW HERE · 第一次来</div><h1>很高兴<br>认识你</h1><p>如果你打算来 ECCM，可以在这里留个联系方式。我们会简单和你联系，也可以提前帮你安排接送。</p><div class="facts"><div class="fact"><strong>周五 6:15–8:30 PM</strong><span>晚餐、敬拜、查经和祷告</span></div><div class="fact"><strong>Second Presbyterian Church</strong><span>从 UMKC 步行约 15 分钟</span></div></div></section>
+    <section class="card">
+      <div id="form-view"><h2>第一次来 ECCM？</h2><p class="card-lead">填最基本的信息就好，通常一分钟以内可以完成。</p>
+      <form id="connect-form" novalidate>
+        <div class="fields">
+          <div class="field"><label for="name">姓名 Name <span>*</span></label><input id="name" name="name" autocomplete="name" maxlength="80" required /></div>
+          <div class="field"><label for="contact">首选联系方式 Preferred Contact <span>*</span></label><input id="contact" name="contact" autocomplete="email" maxlength="160" placeholder="手机号、微信或 Email" required /><div class="hint">填写一种最方便联系你的方式即可</div></div>
+          <div class="field"><label for="school">学校 School <span>*</span></label><input id="school" name="school" autocomplete="organization" maxlength="120" placeholder="例如 UMKC" required /></div>
+          <div class="field"><label for="attendance">计划什么时候来 Planned Attendance</label><input id="attendance" name="attendance" maxlength="120" placeholder="例如 8月28日或下周五" /></div>
+          <fieldset class="field full"><legend>是否需要接送 Need a Ride?</legend><div class="choices"><div class="choice"><input type="radio" id="ride-yes" name="ride" value="Yes"><label for="ride-yes">需要 Yes</label></div><div class="choice"><input type="radio" id="ride-no" name="ride" value="No"><label for="ride-no">不需要 No</label></div><div class="choice"><input type="radio" id="ride-unsure" name="ride" value="Not sure"><label for="ride-unsure">还不确定</label></div></div></fieldset>
+          <div class="field full"><label for="faith">目前对基督信仰的了解 Faith Background</label><select id="faith" name="faith"><option value="">请选择（可跳过）</option><option value="Christian">我是基督徒</option><option value="Exploring Christianity">我正在了解基督信仰</option><option value="Not sure">我还不确定</option><option value="Prefer not to say">暂不回答</option></select></div>
+          <div class="field full"><label for="heard">你是怎么知道 ECCM 的？</label><select id="heard" name="heard"><option value="">请选择（可跳过）</option><option value="Friend">朋友介绍</option><option value="Instagram">Instagram</option><option value="Flyer / Poster">海报</option><option value="Church">教会</option><option value="Other">其他</option></select></div>
+          <div class="field full"><label for="message">还有什么想提前告诉我们的吗？</label><textarea id="message" name="message" maxlength="800" placeholder="例如接送地点、饮食需要或其他问题"></textarea></div>
+          <div class="trap" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
+        </div>
+        <p class="privacy">你填写的信息只会由 ECCM 同工用于联系和接待新人。</p>
+        <button class="submit" type="submit">发送给 ECCM</button><div class="status" id="status" role="alert" aria-live="polite"></div>
+      </form></div>
+      <div class="success" id="success" tabindex="-1"><div class="success-mark">✓</div><h2>谢谢你联系我们</h2><p>ECCM 每周五 6:15–8:30 PM 聚会。如果你需要接送，我们会通过你留下的联系方式与你确认。</p><div class="actions"><a class="btn primary" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">查看 Instagram</a><a class="btn secondary" href="/#visit">查看地点</a><a class="btn secondary" href="/">返回首页</a></div></div>
+    </section>
+  </div></main>
+  <script>
+    const form=document.querySelector('#connect-form'),button=form.querySelector('.submit'),statusBox=document.querySelector('#status'),startedAt=Date.now();
+    form.addEventListener('submit',async event=>{event.preventDefault();statusBox.className='status';statusBox.textContent='';if(!form.checkValidity()){form.reportValidity();return}button.disabled=true;button.textContent='正在发送…';const data=Object.fromEntries(new FormData(form));data.startedAt=startedAt;try{const response=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error('submit-failed');document.querySelector('#form-view').hidden=true;document.querySelector('#success').classList.add('show');document.querySelector('#success').focus()}catch(error){statusBox.textContent='出了点问题，请稍后再试。';statusBox.className='status error';button.disabled=false;button.textContent='发送给 ECCM'}});
+  </script>
+</body>
+</html>
