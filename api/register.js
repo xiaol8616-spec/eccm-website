@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       faith: clean(body.faith, 40), ride: clean(body.ride, 20), attendance: clean(body.attendance, MAX.attendance),
       heard: clean(body.heard, 40), message: clean(body.message, MAX.message)
     };
-    if (!data.name || data.contact.length < 3 || !data.school) return json(res, 400, { ok: false, message: 'Please complete your name, contact, and school.' });
+    if (!data.name || data.contact.length < 3) return json(res, 400, { ok: false, message: 'Please complete your name and contact.' });
     if ((data.faith && !allowed.faith.includes(data.faith)) || (data.ride && !allowed.ride.includes(data.ride)) || (data.heard && !allowed.heard.includes(data.heard))) {
       return json(res, 400, { ok: false, message: 'Please check the selected options.' });
     }
