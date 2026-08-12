@@ -1,15 +1,15 @@
 import crypto from 'node:crypto';
 
-const MAX = { name: 80, contact: 160, school: 120, attendance: 120, message: 800 };
+const MAX = { name: 80, contact: 160, attendance: 120, message: 800 };
 const allowed = {
+  status: ['UMKC Student', 'Other Student', 'Visiting Scholar', 'Working', 'Other', 'Prefer not to say'],
   faith: ['Christian', 'Exploring Christianity', 'Not sure', 'Prefer not to say'],
-  ride: ['Yes', 'No', 'Not sure'],
-  heard: ['Friend', 'Instagram', 'Flyer / Poster', 'Church', 'Other']
+  ride: ['Yes', 'No', 'Not sure']
 };
 const labels = {
+  status: { 'UMKC Student': 'UMKC 学生', 'Other Student': '其他学校学生', 'Visiting Scholar': '访问学者', Working: '已经工作', Other: '其他', 'Prefer not to say': '暂不填写' },
   faith: { Christian: '我是基督徒', 'Exploring Christianity': '正在了解基督信仰', 'Not sure': '还不确定', 'Prefer not to say': '暂不回答' },
-  ride: { Yes: '需要', No: '不需要', 'Not sure': '还不确定' },
-  heard: { Friend: '朋友介绍', Instagram: 'Instagram', 'Flyer / Poster': '海报', Church: '教会', Other: '其他' }
+  ride: { Yes: '需要', No: '不需要', 'Not sure': '还不确定' }
 };
 const recent = new Map();
 
@@ -54,12 +54,12 @@ export default async function handler(req, res) {
     if (Date.now() - last < 30000) return json(res, 429, { ok: false, message: 'Please wait a moment before submitting again.' });
 
     const data = {
-      name: clean(body.name, MAX.name), contact: clean(body.contact, MAX.contact), school: clean(body.school, MAX.school),
+      name: clean(body.name, MAX.name), contact: clean(body.contact, MAX.contact), status: clean(body.status, 40),
       faith: clean(body.faith, 40), ride: clean(body.ride, 20), attendance: clean(body.attendance, MAX.attendance),
-      heard: clean(body.heard, 40), message: clean(body.message, MAX.message)
+      message: clean(body.message, MAX.message)
     };
     if (!data.name || data.contact.length < 3) return json(res, 400, { ok: false, message: 'Please complete your name and contact.' });
-    if ((data.faith && !allowed.faith.includes(data.faith)) || (data.ride && !allowed.ride.includes(data.ride)) || (data.heard && !allowed.heard.includes(data.heard))) {
+    if ((data.status && !allowed.status.includes(data.status)) || (data.faith && !allowed.faith.includes(data.faith)) || (data.ride && !allowed.ride.includes(data.ride))) {
       return json(res, 400, { ok: false, message: 'Please check the selected options.' });
     }
 
@@ -67,7 +67,7 @@ export default async function handler(req, res) {
     if (!sheetId) throw new Error('Google Sheet is not configured');
     const token = await googleAccessToken();
     const timestamp = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
-    const values = [[timestamp, safeCell(data.name), safeCell(data.contact), safeCell(data.school), labels.faith[data.faith] || '', labels.ride[data.ride] || '', safeCell(data.attendance), labels.heard[data.heard] || '', safeCell(data.message), '', '新登记', '']];
+    const values = [[timestamp, safeCell(data.name), safeCell(data.contact), labels.status[data.status] || '', labels.faith[data.faith] || '', labels.ride[data.ride] || '', safeCell(data.attendance), '', safeCell(data.message), '', '新登记', '']];
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}/values/Newcomers!A:L:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`, {
       method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ values })
     });
