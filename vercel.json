@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/register.js": { "maxDuration": 10 }
+  },
+  "rewrites": [
+    { "source": "/new", "destination": "/new/index.html" }
+  ]
+}
