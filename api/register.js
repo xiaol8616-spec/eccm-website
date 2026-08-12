@@ -67,8 +67,8 @@ export default async function handler(req, res) {
     if (!sheetId) throw new Error('Google Sheet is not configured');
     const token = await googleAccessToken();
     const timestamp = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
-    const values = [[timestamp, safeCell(data.name), safeCell(data.contact), safeCell(data.school), labels.faith[data.faith] || '', labels.ride[data.ride] || '', safeCell(data.attendance), labels.heard[data.heard] || '', safeCell(data.message), '', '新登记', '', '', '', '', '']];
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}/values/Newcomers!A:P:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`, {
+    const values = [[timestamp, safeCell(data.name), safeCell(data.contact), safeCell(data.school), labels.faith[data.faith] || '', labels.ride[data.ride] || '', safeCell(data.attendance), labels.heard[data.heard] || '', safeCell(data.message), '', '新登记', '']];
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}/values/Newcomers!A:L:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`, {
       method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ values })
     });
     if (!response.ok) throw new Error(`Google Sheets append failed (${response.status}): ${await response.text()}`);
