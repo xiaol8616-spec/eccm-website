@@ -944,6 +944,20 @@
     });
   });
 
+  const compactScheduleSummary = (summary, title) => {
+    const clean = String(summary || '')
+      .replace(/[•·▪◦]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!clean) {
+      return /福音|圣经|查经|约翰|马太|马可|路加/.test(title)
+        ? '一起读这段经文，分享问题和发现'
+        : '本周安排会陆续更新';
+    }
+    const firstThought = clean.split(/(?<=[。！？!?；;])\s*/)[0];
+    return firstThought.length > 46 ? `${firstThought.slice(0, 45).trim()}…` : firstThought;
+  };
+
   const updateCalendarFromSheet = async () => {
     try {
       const response = await fetch('/api/schedule');
@@ -954,15 +968,18 @@
       today.setHours(0, 0, 0, 0);
       const upcoming = result.events.filter(event => new Date(`${event.date}T12:00:00`) >= today);
       const events = (upcoming.length ? upcoming : result.events.slice(-3)).slice(0, 3);
+      const weekday = new Intl.DateTimeFormat('zh-CN', { weekday: 'short' });
       const dateGrid = document.querySelector('.date-grid');
+      if (!dateGrid || !events.length) return;
+
       dateGrid.replaceChildren(...events.map((event, index) => {
         const date = new Date(`${event.date}T12:00:00`);
         const card = document.createElement('article');
-        card.className = `date-card${index === 0 ? ' featured' : ''}`;
+        card.className = `date-card reveal-item is-visible${index === 0 ? ' featured' : ''}`;
 
         const time = document.createElement('time');
         time.dateTime = event.date;
-        time.textContent = `${date.getMonth() + 1}月${date.getDate()}日 · 周五`;
+        time.textContent = `${date.getMonth() + 1}月${date.getDate()}日 · ${weekday.format(date)}`;
         card.append(time);
 
         if (index === 0) {
@@ -977,16 +994,15 @@
         const title = document.createElement('strong');
         title.textContent = event.title;
         const summary = document.createElement('p');
-        summary.textContent = event.summary || '更多安排会陆续更新';
+        summary.textContent = compactScheduleSummary(event.summary, event.title);
         copy.append(title, summary);
         card.append(copy);
         return card;
       }));
     } catch (error) {
-      // Keep the hand-authored kickoff dates if the live schedule is unavailable.
+      // 网络或表格暂时不可用时，保留页面内预设的三项安排。
     }
   };
-  updateCalendarFromSheet();
 
   const revealGroups = [
     ['.kickoff-head'],
@@ -1034,6 +1050,7 @@
     }, { threshold: .1, rootMargin: '0px 0px -5% 0px' });
     revealItems.forEach(item => revealObserver.observe(item));
   }
+  updateCalendarFromSheet();
 </script>
 </body>
 </html>
