@@ -507,25 +507,27 @@
       .who-content{margin:0;padding:24px 22px 26px}
       .who-content p{font-size:15px}
       .who-card.is-following{
-        position:fixed;left:auto;right:14px;top:auto;bottom:max(16px,env(safe-area-inset-bottom));
-        width:82px;max-height:82px;transform:none;z-index:120;
+        position:fixed;left:auto;right:14px;top:58%;bottom:auto;
+        width:82px;max-height:82px;transform:translateY(-50%);z-index:120;
         background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(244,240,228,.42));
         box-shadow:0 12px 32px rgba(27,36,24,.16),inset 0 1px 0 rgba(255,255,255,.88);
-        animation:who-glass-arrive .3s ease both
+        transition:opacity .24s ease,transform .24s cubic-bezier(.22,.7,.28,1),width .42s cubic-bezier(.2,.8,.2,1),max-height .48s cubic-bezier(.2,.8,.2,1);
+        animation:who-glass-arrive .32s ease both
       }
-      .who-card.is-following:not([open]):hover{transform:translateY(-2px) scale(1.015)}
+      .who-card.is-following:not([open]):hover{transform:translateY(calc(-50% - 2px)) scale(1.015)}
       .who-card.is-following summary{height:82px;gap:3px}
       .who-card.is-following summary span:first-child{font-size:15px}
       .who-card.is-following summary span:last-child{font-size:6px}
       .who-card.is-following summary:before{right:11px;top:11px;width:6px;height:6px}
       .who-card.is-following summary:after{bottom:7px;font-size:12px}
       .who-card.is-following[open]{
-        left:13px;right:13px;top:auto;bottom:max(16px,env(safe-area-inset-bottom));
-        width:auto;max-height:min(560px,calc(100dvh - 100px));transform:none;border-radius:24px;
+        left:13px;right:13px;top:50%;bottom:auto;
+        width:auto;max-height:min(560px,calc(100dvh - 100px));transform:translateY(-50%);border-radius:24px;
         color:#fff;background:linear-gradient(145deg,rgba(35,48,32,.94),rgba(24,33,23,.9));
         border-color:rgba(255,255,255,.22);box-shadow:0 24px 64px rgba(27,36,24,.28),inset 0 1px 0 rgba(255,255,255,.18);
         overflow-y:auto;overscroll-behavior:contain
       }
+      .who-card.is-following.is-leaving{opacity:0;transform:translateY(-50%) scale(.94);pointer-events:none;animation:none}
       .who-card.is-following[open] summary{height:68px;position:sticky;top:0;z-index:2;background:rgba(35,48,32,.92)}
       .who-card.is-following[open] summary span:first-child{font-size:20px}
       .who-card.is-following[open] summary span:last-child{font-size:8px}
@@ -967,13 +969,27 @@
   const valuesSection = document.querySelector('#values');
   const midweekSection = document.querySelector('#midweek');
   let followFrame = null;
+  let followExitTimer = null;
   const updateWhoFollow = () => {
     followFrame = null;
     const start = valuesSection.offsetTop - window.innerHeight * .35;
     const end = midweekSection.offsetTop + midweekSection.offsetHeight - window.innerHeight * .62;
     const shouldFollow = window.scrollY >= start && window.scrollY <= end;
-    if (!shouldFollow && whoCard.open && whoCard.classList.contains('is-following')) whoCard.open = false;
-    whoCard.classList.toggle('is-following', shouldFollow);
+    if (shouldFollow) {
+      clearTimeout(followExitTimer);
+      whoCard.classList.remove('is-leaving');
+      whoCard.classList.add('is-following');
+      return;
+    }
+    if (!whoCard.classList.contains('is-following')) return;
+    if (whoCard.open) whoCard.open = false;
+    if (window.matchMedia('(max-width: 560px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      whoCard.classList.add('is-leaving');
+      clearTimeout(followExitTimer);
+      followExitTimer = setTimeout(() => whoCard.classList.remove('is-following', 'is-leaving'), 240);
+    } else {
+      whoCard.classList.remove('is-following', 'is-leaving');
+    }
   };
   const requestWhoFollow = () => {
     if (!followFrame) followFrame = requestAnimationFrame(updateWhoFollow);
