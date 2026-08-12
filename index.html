@@ -260,11 +260,11 @@
 
     .first-grid{display:grid;grid-template-columns:.83fr 1.17fr;gap:74px;align-items:start}
     .first-copy p{font-size:18px;color:#53604f;max-width:520px}
-    .faq{display:grid;gap:12px}
+    .faq{display:grid;gap:8px}
     .faq-item{
       background:var(--white);
       border:1px solid rgba(27,36,24,.08);
-      border-radius:18px;
+      border-radius:14px;
       overflow:hidden;
       transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease
     }
@@ -274,11 +274,11 @@
     }
     .faq-q{
       width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
-      border:0;background:transparent;text-align:left;padding:20px 22px;color:var(--ink);
-      font-size:16px;font-weight:800;cursor:pointer
+      border:0;background:transparent;text-align:left;padding:14px 18px;color:var(--ink);
+      font-size:15px;font-weight:800;cursor:pointer
     }
     .faq-q span:last-child{
-      flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+      flex:0 0 auto;width:26px;height:26px;border-radius:50%;
       display:grid;place-items:center;
       background:var(--paper-2);font-size:20px;font-weight:500;
       transition:transform .22s ease, background .22s ease
@@ -289,7 +289,7 @@
       transition:grid-template-rows .24s ease
     }
     .faq-a > div{overflow:hidden}
-    .faq-a p{margin:0;padding:0 22px 20px}
+    .faq-a p{margin:0;padding:0 18px 14px}
     .faq-item.open .faq-a{grid-template-rows:1fr}
     .faq-item.open .faq-q span:last-child{transform:rotate(45deg);background:#f2c45b}
 
@@ -483,9 +483,9 @@
       .schedule-row small{font-size:12px;line-height:1.45;display:block}
       .first-copy p{font-size:16px}
       .faq{gap:8px}
-      .faq-q{padding:14px 16px;font-size:15px}
-      .faq-q span:last-child{width:28px;height:28px}
-      .faq-a p{padding:0 16px 14px}
+      .faq-q{padding:12px 14px;font-size:14px}
+      .faq-q span:last-child{width:26px;height:26px}
+      .faq-a p{padding:0 14px 12px}
       .who-section{height:0;padding:0}
       .who-card{left:50%;right:auto;top:-52px;width:104px;max-height:104px;transform:translateX(-50%)}
       .who-card:not([open]):hover{transform:translateX(-50%) translateY(-3px) scale(1.02)}
@@ -710,6 +710,13 @@
         </div>
 
         <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
+            <span>如果我已经是基督徒呢？</span><span>+</span>
+          </button>
+          <div class="faq-a" id="faq-answer-5" role="region" aria-labelledby="faq-question-5"><div><p>同样欢迎。我们盼望一起读经、祷告，在基督里成长，也彼此扶持、关心身边的同学。</p></div></div>
+        </div>
+
+        <div class="faq-item">
           <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
             <span>第一次来需要准备什么？</span><span>+</span>
           </button>
@@ -735,23 +742,23 @@
 
   <section class="section values-section" id="values">
     <div class="container">
-      <div class="values-head"><span class="values-title">我们看重什么</span><span>3S · 信仰成长 · 认识信仰 · 一起生活</span></div>
+      <div class="values-head"><span class="values-title">我们看重什么</span><span>信仰 · 圣经 · 生活</span></div>
 
       <div class="cards-3">
         <article class="info-card">
           <div class="num">01 · SPIRITUAL</div>
-          <h3>信仰成长</h3>
-          <p>一起祷告、聊信仰，也在生活里互相支持。</p>
+          <h3>在信仰中成长</h3>
+          <p>一起祷告、谈信仰，也在彼此陪伴中学习跟随耶稣。</p>
         </article>
         <article class="info-card">
           <div class="num">02 · STUDY</div>
-          <h3>认识信仰</h3>
-          <p>一起读圣经。有不懂的地方，就提出来一起聊。</p>
+          <h3>一起读圣经</h3>
+          <p>一起读圣经、问问题，认真聊聊基督信仰到底在说什么。</p>
         </article>
         <article class="info-card">
           <div class="num">03 · SOCIAL</div>
           <h3>一起生活</h3>
-          <p>一起吃饭、出游、玩游戏、过节。聚会之外，也会一起玩。</p>
+          <p>一起吃饭、出游、玩游戏、过节。周五之外，我们也常常见面。</p>
         </article>
       </div>
     </div>
@@ -763,7 +770,7 @@
         <summary><span>我们是谁</span><span>30 YEARS · 点击了解</span></summary>
         <div class="who-content">
           <h2>在 Kansas City<br>三十多年</h2>
-          <p>ECCM 在 Kansas City 已经有三十多年。过去这些年，许多学生在这里认识朋友、适应新的城市，也一起面对学习、生活和信仰中的问题。</p>
+          <p>ECCM 在 Kansas City 已经走过三十多年。一届又一届学生来到这里，在新的城市里认识朋友、建立生活，也一起认识信仰。</p>
         </div>
       </details>
     </div>
@@ -786,11 +793,11 @@
         </div>
         <div class="midweek-meta">
           <div><span>时间</span><strong>周三<br>6:30–8:00 PM</strong></div>
-          <div><span>地点</span><strong>Leo 家 · The Bluffs at Brush Creek<br>1320 E 49th St</strong></div>
+          <div><span>地点</span><strong>UMKC 附近<br>联系 Leo 获取具体地址</strong></div>
           <div><span>联系</span><strong><a href="tel:+18017067979">Leo Liu<br>801-706-7979</a></strong></div>
-          <div><span>适合</span><strong>想多聊聊信仰，也愿意分享和祷告的朋友</strong></div>
+          <div><span>适合</span><strong>想更深入认识信仰，也愿意一起分享、祷告的朋友</strong></div>
         </div>
-        <div class="midweek-note"><span>来之前请先联系 Leo，确认具体房号。</span><a href="tel:+18017067979">联系 Leo →</a></div>
+        <div class="midweek-note"><span>第一次来？联系 Leo 获取具体地点。</span><a href="tel:+18017067979">联系 Leo →</a></div>
       </div>
     </div>
   </section>
