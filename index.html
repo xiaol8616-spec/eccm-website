@@ -34,6 +34,9 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+    :where(main section[id]){scroll-margin-top:92px}
+    #home{scroll-margin-top:0}
+    #about{scroll-margin-top:150px}
     body{
       margin:0;
       color:var(--ink);
@@ -503,6 +506,32 @@
       .who-card[open] summary span:last-child{text-align:left}
       .who-content{margin:0;padding:24px 22px 26px}
       .who-content p{font-size:15px}
+      .who-card.is-following{
+        position:fixed;left:auto;right:14px;top:auto;bottom:max(16px,env(safe-area-inset-bottom));
+        width:82px;max-height:82px;transform:none;z-index:120;
+        background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(244,240,228,.42));
+        box-shadow:0 12px 32px rgba(27,36,24,.16),inset 0 1px 0 rgba(255,255,255,.88);
+        animation:who-glass-arrive .3s ease both
+      }
+      .who-card.is-following:not([open]):hover{transform:translateY(-2px) scale(1.015)}
+      .who-card.is-following summary{height:82px;gap:3px}
+      .who-card.is-following summary span:first-child{font-size:15px}
+      .who-card.is-following summary span:last-child{font-size:6px}
+      .who-card.is-following summary:before{right:11px;top:11px;width:6px;height:6px}
+      .who-card.is-following summary:after{bottom:7px;font-size:12px}
+      .who-card.is-following[open]{
+        left:13px;right:13px;top:auto;bottom:max(16px,env(safe-area-inset-bottom));
+        width:auto;max-height:min(560px,calc(100dvh - 100px));transform:none;border-radius:24px;
+        color:#fff;background:linear-gradient(145deg,rgba(35,48,32,.94),rgba(24,33,23,.9));
+        border-color:rgba(255,255,255,.22);box-shadow:0 24px 64px rgba(27,36,24,.28),inset 0 1px 0 rgba(255,255,255,.18);
+        overflow-y:auto;overscroll-behavior:contain
+      }
+      .who-card.is-following[open] summary{height:68px;position:sticky;top:0;z-index:2;background:rgba(35,48,32,.92)}
+      .who-card.is-following[open] summary span:first-child{font-size:20px}
+      .who-card.is-following[open] summary span:last-child{font-size:8px}
+      .who-card.is-following[open] summary:before{right:52px;top:29px;width:8px;height:8px}
+      .who-card.is-following[open] summary:after{right:21px;top:21px;bottom:auto;font-size:21px}
+      .menu-open .who-card.is-following{opacity:0!important;visibility:hidden;pointer-events:none;animation:none}
       .midweek{padding:46px 0}
       .midweek-shell{padding:23px}
       .midweek-intro{gap:19px;padding-bottom:21px}
@@ -844,37 +873,39 @@
 </footer>
 
 <script>
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
-  // Mobile browsers may restore an old anchor or scroll position when the site
-  // is reopened. A fresh visit should always begin with the welcome screen.
-  if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-  }
-  const resetInitialScroll = () => {
+  // A fresh visit without a destination starts at the welcome screen. Intentional
+  // section links and browser back/forward navigation keep their expected position.
+  const navigationEntry = performance.getEntriesByType('navigation')[0];
+  const shouldStartAtTop = !window.location.hash && navigationEntry?.type !== 'back_forward';
+  const resetFreshVisit = () => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     const previousBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
       document.documentElement.style.scrollBehavior = previousBehavior;
+      if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
     });
   };
-  resetInitialScroll();
-  window.addEventListener('pageshow', resetInitialScroll);
-  window.addEventListener('load', resetInitialScroll, { once: true });
+  if (shouldStartAtTop) resetFreshVisit();
+  else if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 
   const menuBtn = document.querySelector('.menu-btn');
   const navLinks = document.querySelector('.nav-links');
+  const whoCard = document.querySelector('.who-card');
 
   menuBtn.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
+    document.body.classList.toggle('menu-open', open);
+    if (open) whoCard.open = false;
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menuBtn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
   });
 
   const closeMenu = () => {
     navLinks.classList.remove('open');
+    document.body.classList.remove('menu-open');
     menuBtn.setAttribute('aria-expanded', 'false');
     menuBtn.setAttribute('aria-label', '打开菜单');
   };
@@ -899,7 +930,28 @@
     });
   });
 
-  const whoCard = document.querySelector('.who-card');
+  const scrollToHashTarget = () => {
+    if (!window.location.hash) return;
+    let targetId;
+    try { targetId = decodeURIComponent(window.location.hash.slice(1)); }
+    catch (error) { return; }
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const previousBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    target.scrollIntoView({ block: 'start' });
+    document.documentElement.style.scrollBehavior = previousBehavior;
+  };
+  const handleHashDestination = () => {
+    if (window.location.hash === '#about') whoCard.open = true;
+    requestAnimationFrame(scrollToHashTarget);
+  };
+  if (window.location.hash) {
+    handleHashDestination();
+    window.addEventListener('load', () => requestAnimationFrame(scrollToHashTarget), { once: true });
+  }
+  window.addEventListener('hashchange', handleHashDestination);
+
   document.addEventListener('click', event => {
     if (whoCard.open && !event.target.closest('.who-card') && !event.target.closest('a[href="#about"]')) {
       whoCard.open = false;
@@ -914,24 +966,20 @@
 
   const valuesSection = document.querySelector('#values');
   const midweekSection = document.querySelector('#midweek');
-  const followMedia = window.matchMedia('(min-width: 561px)');
   let followFrame = null;
   const updateWhoFollow = () => {
     followFrame = null;
-    if (!followMedia.matches) {
-      whoCard.classList.remove('is-following');
-      return;
-    }
     const start = valuesSection.offsetTop - window.innerHeight * .35;
     const end = midweekSection.offsetTop + midweekSection.offsetHeight - window.innerHeight * .62;
-    whoCard.classList.toggle('is-following', window.scrollY >= start && window.scrollY <= end);
+    const shouldFollow = window.scrollY >= start && window.scrollY <= end;
+    if (!shouldFollow && whoCard.open && whoCard.classList.contains('is-following')) whoCard.open = false;
+    whoCard.classList.toggle('is-following', shouldFollow);
   };
   const requestWhoFollow = () => {
     if (!followFrame) followFrame = requestAnimationFrame(updateWhoFollow);
   };
   window.addEventListener('scroll', requestWhoFollow, { passive: true });
   window.addEventListener('resize', requestWhoFollow);
-  followMedia.addEventListener('change', updateWhoFollow);
   updateWhoFollow();
 
   document.querySelectorAll('.faq-q').forEach(button => {
