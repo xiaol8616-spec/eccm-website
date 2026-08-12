@@ -449,12 +449,12 @@
       .kickoff-head{gap:20px;margin-bottom:26px}
       .kickoff-head p{font-size:15px}
       .date-grid,.calendar-layout{gap:10px}
-      .date-card,.date-card.featured{min-height:0;padding:17px 18px;display:grid;grid-template-columns:94px 1fr;gap:6px 14px;align-items:start}
-      .date-card.featured{position:relative;padding-right:76px}
+      .date-card,.date-card.featured{min-height:0;padding:17px 18px;display:grid;grid-template-columns:94px minmax(0,1fr);gap:6px 13px;align-items:start}
+      .date-card.featured{position:relative;grid-template-columns:94px minmax(0,1fr) 46px}
       .date-card time,.date-card.featured time{grid-column:1;grid-row:1;margin-top:4px}
-      .date-card>div:last-child,.date-card.featured>div:last-child{grid-column:2;grid-row:1}
+      .date-card>div:last-child,.date-card.featured>div:last-child{grid-column:2;grid-row:1;min-width:0}
       .date-mark{display:none}
-      .date-card.featured .date-mark{display:block;position:absolute;right:14px;bottom:9px;font-size:72px;line-height:.78;color:rgba(27,36,24,.2)}
+      .date-card.featured .date-mark{display:block;position:static;grid-column:3;grid-row:1;align-self:end;justify-self:end;font-size:52px;line-height:.8;color:rgba(27,36,24,.2)}
       .date-card strong{font-size:20px;margin-bottom:5px}
       .date-card p{font-size:13px;line-height:1.5}
       .calendar-social{min-height:0;padding:20px;gap:24px}
@@ -596,7 +596,7 @@
           ECCM 是面向大学生、访问学者和年轻人的中文校园团契。无论你已经相信基督，还是正在探索信仰，都欢迎你一起吃晚餐、读圣经、认识朋友。
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#fall">查看秋季安排</a>
+          <a class="btn btn-primary" href="#fall">看看近期安排</a>
           <a class="btn btn-secondary" href="#first">第一次来会怎样？</a>
         </div>
       </div>
@@ -958,6 +958,17 @@
     return firstThought.length > 46 ? `${firstThought.slice(0, 45).trim()}…` : firstThought;
   };
 
+  const presentScheduleEvent = event => {
+    const pause = /暂停|停一周|停一次|本周停/.test(`${event.title} ${event.summary}`);
+    return {
+      ...event,
+      title: pause && /^(暂停|停一周|停一次)$/.test(event.title) ? '本周暂停' : event.title,
+      summary: pause && !String(event.summary || '').trim()
+        ? '这周不聚会，下周再见'
+        : compactScheduleSummary(event.summary, event.title)
+    };
+  };
+
   const updateCalendarFromSheet = async () => {
     try {
       const response = await fetch('/api/schedule');
@@ -967,7 +978,7 @@
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       const upcoming = result.events.filter(event => new Date(`${event.date}T12:00:00`) >= today);
-      const events = (upcoming.length ? upcoming : result.events.slice(-3)).slice(0, 3);
+      const events = (upcoming.length ? upcoming : result.events.slice(-3)).slice(0, 3).map(presentScheduleEvent);
       const weekday = new Intl.DateTimeFormat('zh-CN', { weekday: 'short' });
       const dateGrid = document.querySelector('.date-grid');
       if (!dateGrid || !events.length) return;
@@ -994,7 +1005,7 @@
         const title = document.createElement('strong');
         title.textContent = event.title;
         const summary = document.createElement('p');
-        summary.textContent = compactScheduleSummary(event.summary, event.title);
+        summary.textContent = event.summary;
         copy.append(title, summary);
         card.append(copy);
         return card;
