@@ -22,12 +22,12 @@
   <main><div class="container grid">
     <section class="intro"><div class="eyebrow">NEW HERE · 第一次来</div><h1>很高兴<br>认识你</h1><p>如果你打算来 ECCM，可以在这里留个联系方式。我们会联系你确认聚会时间；如果需要，也可以提前安排接送。</p><div class="facts"><div class="fact"><strong>周五 6:15–8:30 PM</strong><span>晚餐、敬拜、查经和祷告</span></div><div class="fact"><strong>Second Presbyterian Church</strong><span>从 UMKC 步行约 15 分钟</span></div></div></section>
     <section class="card">
-      <div id="form-view"><h2>第一次来 ECCM？</h2><p class="card-lead">填最基本的信息就好，通常一分钟以内可以完成。</p>
+      <div id="form-view"><h2>第一次来 ECCM？</h2><p class="card-lead">只需要留下姓名和联系方式。直接来也可以，这不是报名要求。</p>
       <form id="connect-form" novalidate>
         <div class="fields">
           <div class="field"><label for="name">姓名 Name <span>*</span></label><input id="name" name="name" autocomplete="name" maxlength="80" required /></div>
           <div class="field"><label for="contact">首选联系方式 Preferred Contact <span>*</span></label><input id="contact" name="contact" autocomplete="off" inputmode="text" maxlength="160" placeholder="手机号、微信或 Email" required /><div class="hint">填写一种最方便联系你的方式即可</div></div>
-          <div class="field"><label for="school">学校 School <span>*</span></label><input id="school" name="school" autocomplete="organization" maxlength="120" placeholder="例如 UMKC" required /></div>
+          <div class="field"><label for="school">学校或单位 School / Organization</label><input id="school" name="school" autocomplete="organization" maxlength="120" placeholder="例如 UMKC（选填）" /></div>
           <div class="field"><label for="attendance">计划什么时候来 Planned Attendance</label><input id="attendance" name="attendance" maxlength="120" placeholder="例如 8月28日或下周五" /></div>
           <fieldset class="field full"><legend>是否需要接送 Need a Ride?</legend><div class="choices"><div class="choice"><input type="radio" id="ride-yes" name="ride" value="Yes"><label for="ride-yes">需要 Yes</label></div><div class="choice"><input type="radio" id="ride-no" name="ride" value="No"><label for="ride-no">不需要 No</label></div><div class="choice"><input type="radio" id="ride-unsure" name="ride" value="Not sure"><label for="ride-unsure">还不确定</label></div></div></fieldset>
           <div class="field full"><label for="faith">目前对基督信仰的了解 Faith Background</label><select id="faith" name="faith"><option value="">请选择（可跳过）</option><option value="Christian">我是基督徒</option><option value="Exploring Christianity">我正在了解基督信仰</option><option value="Not sure">我还不确定</option><option value="Prefer not to say">暂不回答</option></select></div>
@@ -38,12 +38,12 @@
         <p class="privacy">你填写的信息只会由 ECCM 同工用于联系和接待新人。</p>
         <button class="submit" type="submit">发送给 ECCM</button><div class="status" id="status" role="alert" aria-live="polite"></div>
       </form></div>
-      <div class="success" id="success" tabindex="-1"><div class="success-mark">✓</div><h2>谢谢你联系我们</h2><p>ECCM 每周五 6:15–8:30 PM 聚会。如果你需要接送，我们会通过你留下的联系方式与你确认。</p><div class="actions"><a class="btn primary" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">查看 Instagram</a><a class="btn secondary" href="/#visit">查看地点</a><a class="btn secondary" href="/">返回首页</a></div></div>
+      <div class="success" id="success" tabindex="-1"><div class="success-mark">✓</div><h2>谢谢你联系我们</h2><p>我们会通过你留下的联系方式联系你。ECCM 每周五 6:15–8:30 PM 在 Second Presbyterian Church 聚会。</p><div class="actions"><a class="btn primary" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">查看 Instagram</a><a class="btn secondary" href="/#visit">查看地点</a><a class="btn secondary" href="/">返回首页</a></div></div>
     </section>
   </div></main>
   <script>
     const form=document.querySelector('#connect-form'),button=form.querySelector('.submit'),statusBox=document.querySelector('#status'),startedAt=Date.now();
-    form.addEventListener('submit',async event=>{event.preventDefault();statusBox.className='status';statusBox.textContent='';if(!form.checkValidity()){form.reportValidity();return}button.disabled=true;button.textContent='正在发送…';const data=Object.fromEntries(new FormData(form));data.startedAt=startedAt;try{const response=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error('submit-failed');document.querySelector('#form-view').hidden=true;document.querySelector('#success').classList.add('show');document.querySelector('#success').focus()}catch(error){statusBox.textContent='出了点问题，请稍后再试。';statusBox.className='status error';button.disabled=false;button.textContent='发送给 ECCM'}});
+    form.addEventListener('submit',async event=>{event.preventDefault();statusBox.className='status';statusBox.textContent='';if(!form.checkValidity()){form.reportValidity();return}button.disabled=true;button.textContent='正在发送…';const data=Object.fromEntries(new FormData(form));data.startedAt=startedAt;try{const response=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error('submit-failed');document.querySelector('#form-view').hidden=true;document.querySelector('#success').classList.add('show');document.querySelector('#success').focus()}catch(error){statusBox.innerHTML='暂时没有发送成功，请稍后再试，或直接短信联系 Leo：<a href="sms:+18017067979">801-706-7979</a>';statusBox.className='status error';button.disabled=false;button.textContent='发送给 ECCM'}});
   </script>
 </body>
 </html>
