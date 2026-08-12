@@ -206,6 +206,7 @@
       .who-card.is-following{
         position:fixed;left:auto;right:max(20px,calc((100vw - 1160px)/2));top:68vh;
         transform:translateY(-50%);z-index:120;
+        transition:opacity .3s ease,width .42s cubic-bezier(.2,.8,.2,1),max-height .48s cubic-bezier(.2,.8,.2,1),border-radius .38s ease,box-shadow .3s ease;
         animation:who-glass-arrive .3s ease both
       }
       .who-card.is-following:not([open]):hover{transform:translateY(calc(-50% - 3px)) scale(1.015)}
@@ -220,14 +221,12 @@
     .who-card:not([open]):hover{transform:translateY(-3px) scale(1.015);box-shadow:0 18px 44px rgba(27,36,24,.18),inset 0 1px 0 rgba(255,255,255,.88)}
     .who-card[open] summary{height:76px;padding:0 30px;border-radius:0;flex-direction:row;justify-content:flex-start;gap:12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12)}
     .who-card summary::-webkit-details-marker{display:none}
-    .who-card summary:before{content:"";position:absolute;right:17px;top:16px;width:8px;height:8px;border-radius:50%;background:rgba(240,189,58,.92);box-shadow:0 0 0 5px rgba(240,189,58,.13)}
     .who-card summary:after{content:"＋";position:absolute;left:50%;bottom:12px;transform:translateX(-50%);color:rgba(27,36,24,.7);font-size:15px;line-height:1}
-    .who-card[open] summary:before{right:58px;top:33px;width:9px;height:9px}
     .who-card[open] summary:after{content:"−";left:auto;right:28px;bottom:auto;top:25px;transform:none;color:var(--yellow);font-size:22px}
     .who-card summary span:first-child{font-size:18px;letter-spacing:-.03em}
-    .who-card summary span:last-child{font-size:7px;letter-spacing:.11em;color:rgba(27,36,24,.58)}
     .who-card[open] summary span:first-child{font-size:21px}
-    .who-card[open] summary span:last-child{font-size:8px;color:#d8e1d4}
+    .who-card.is-following.is-ending{opacity:0!important;pointer-events:none;animation:none!important}
+    .menu-open .who-card.is-following{opacity:0!important;visibility:hidden;pointer-events:none;animation:none}
     .who-content{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;margin:0;padding:34px;background:transparent}
     .who-content h2{font-size:clamp(36px,4vw,54px)}
     .who-content p{margin:0;color:#cbd4c8;font-size:17px;line-height:1.7;max-width:620px}
@@ -496,14 +495,10 @@
       .who-card[open]{left:0;right:0;top:-22px;transform:none}
       .who-card summary{height:104px;gap:5px}
       .who-card[open] summary{height:76px;padding:0 22px;gap:10px}
-      .who-card summary:before{right:14px;top:13px;width:7px;height:7px}
       .who-card summary:after{left:50%;right:auto;top:auto;bottom:10px;font-size:14px}
-      .who-card[open] summary:before{right:54px;top:33px;width:9px;height:9px}
       .who-card[open] summary:after{left:auto;right:22px;top:25px;bottom:auto;transform:none;font-size:21px}
       .who-card summary span:first-child{font-size:17px;padding:0}
-      .who-card summary span:last-child{font-size:7px;text-align:center;padding:0}
       .who-card[open] summary span:first-child{font-size:20px}
-      .who-card[open] summary span:last-child{text-align:left}
       .who-content{margin:0;padding:24px 22px 26px}
       .who-content p{font-size:15px}
       .who-card.is-following{
@@ -517,8 +512,6 @@
       .who-card.is-following:not([open]):hover{transform:translateY(calc(-50% - 2px)) scale(1.015)}
       .who-card.is-following summary{height:82px;gap:3px}
       .who-card.is-following summary span:first-child{font-size:15px}
-      .who-card.is-following summary span:last-child{font-size:6px}
-      .who-card.is-following summary:before{right:11px;top:11px;width:6px;height:6px}
       .who-card.is-following summary:after{bottom:7px;font-size:12px}
       .who-card.is-following[open]{
         left:13px;right:13px;top:50%;bottom:auto;
@@ -527,13 +520,9 @@
         border-color:rgba(255,255,255,.22);box-shadow:0 24px 64px rgba(27,36,24,.28),inset 0 1px 0 rgba(255,255,255,.18);
         overflow-y:auto;overscroll-behavior:contain
       }
-      .who-card.is-following.is-leaving{opacity:0;transform:translateY(-50%);pointer-events:none;animation:none}
       .who-card.is-following[open] summary{height:68px;position:sticky;top:0;z-index:2;background:rgba(35,48,32,.92)}
       .who-card.is-following[open] summary span:first-child{font-size:20px}
-      .who-card.is-following[open] summary span:last-child{font-size:8px}
-      .who-card.is-following[open] summary:before{right:52px;top:29px;width:8px;height:8px}
       .who-card.is-following[open] summary:after{right:21px;top:21px;bottom:auto;font-size:21px}
-      .menu-open .who-card.is-following{opacity:0!important;visibility:hidden;pointer-events:none;animation:none}
       .midweek{padding:46px 0}
       .midweek-shell{padding:23px}
       .midweek-intro{gap:19px;padding-bottom:21px}
@@ -798,7 +787,7 @@
   <section class="who-section" id="about">
     <div class="container">
       <details class="who-card">
-        <summary><span>我们是谁</span><span>30 YEARS · 点击了解</span></summary>
+        <summary><span>我们是谁</span></summary>
         <div class="who-content">
           <h2>在 Kansas City<br>三十多年</h2>
           <p>ECCM 在 Kansas City 已经走过三十多年。一届又一届学生来到这里，在新的城市里认识朋友、建立生活，也一起认识信仰。</p>
@@ -898,6 +887,7 @@
   const menuBtn = document.querySelector('.menu-btn');
   const navLinks = document.querySelector('.nav-links');
   const whoCard = document.querySelector('.who-card');
+  whoCard.classList.add('is-following');
 
   menuBtn.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
@@ -926,10 +916,12 @@
   });
 
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', event => {
       closeMenu();
       if (link.getAttribute('href') === '#about') {
-        document.querySelector('.who-card').open = true;
+        event.preventDefault();
+        whoCard.classList.remove('is-ending');
+        whoCard.open = true;
       }
     });
   });
@@ -968,37 +960,20 @@
     }
   });
 
-  const valuesSection = document.querySelector('#values');
-  const midweekSection = document.querySelector('#midweek');
-  let followFrame = null;
-  let followExitTimer = null;
-  const updateWhoFollow = () => {
-    followFrame = null;
-    const start = valuesSection.offsetTop - window.innerHeight * .35;
-    const end = midweekSection.offsetTop + midweekSection.offsetHeight - window.innerHeight * .62;
-    const shouldFollow = window.scrollY >= start && window.scrollY <= end;
-    if (shouldFollow) {
-      clearTimeout(followExitTimer);
-      whoCard.classList.remove('is-leaving');
-      whoCard.classList.add('is-following');
-      return;
-    }
-    if (!whoCard.classList.contains('is-following')) return;
-    if (whoCard.open) whoCard.open = false;
-    if (window.matchMedia('(max-width: 560px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      whoCard.classList.add('is-leaving');
-      clearTimeout(followExitTimer);
-      followExitTimer = setTimeout(() => whoCard.classList.remove('is-following', 'is-leaving'), 240);
-    } else {
-      whoCard.classList.remove('is-following', 'is-leaving');
-    }
+  const pageFooter = document.querySelector('footer');
+  let whoVisibilityFrame = null;
+  const updateWhoEdgeVisibility = () => {
+    whoVisibilityFrame = null;
+    const atPageEnd = pageFooter.getBoundingClientRect().top < window.innerHeight * .88;
+    whoCard.classList.toggle('is-ending', atPageEnd);
+    if (atPageEnd && whoCard.open) whoCard.open = false;
   };
-  const requestWhoFollow = () => {
-    if (!followFrame) followFrame = requestAnimationFrame(updateWhoFollow);
+  const requestWhoEdgeVisibility = () => {
+    if (!whoVisibilityFrame) whoVisibilityFrame = requestAnimationFrame(updateWhoEdgeVisibility);
   };
-  window.addEventListener('scroll', requestWhoFollow, { passive: true });
-  window.addEventListener('resize', requestWhoFollow);
-  updateWhoFollow();
+  window.addEventListener('scroll', requestWhoEdgeVisibility, { passive: true });
+  window.addEventListener('resize', requestWhoEdgeVisibility);
+  updateWhoEdgeVisibility();
 
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
