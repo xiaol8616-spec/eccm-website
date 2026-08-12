@@ -6,6 +6,11 @@ const allowed = {
   ride: ['Yes', 'No', 'Not sure'],
   heard: ['Friend', 'Instagram', 'Flyer / Poster', 'Church', 'Other']
 };
+const labels = {
+  faith: { Christian: '我是基督徒', 'Exploring Christianity': '正在了解基督信仰', 'Not sure': '还不确定', 'Prefer not to say': '暂不回答' },
+  ride: { Yes: '需要', No: '不需要', 'Not sure': '还不确定' },
+  heard: { Friend: '朋友介绍', Instagram: 'Instagram', 'Flyer / Poster': '海报', Church: '教会', Other: '其他' }
+};
 const recent = new Map();
 
 const clean = (value, max) => typeof value === 'string' ? value.trim().replace(/\s+/g, ' ').slice(0, max) : '';
@@ -62,7 +67,7 @@ export default async function handler(req, res) {
     if (!sheetId) throw new Error('Google Sheet is not configured');
     const token = await googleAccessToken();
     const timestamp = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
-    const values = [[timestamp, safeCell(data.name), safeCell(data.contact), safeCell(data.school), data.faith, data.ride, safeCell(data.attendance), data.heard, safeCell(data.message), '', 'New', '', '', '', '', '']];
+    const values = [[timestamp, safeCell(data.name), safeCell(data.contact), safeCell(data.school), labels.faith[data.faith] || '', labels.ride[data.ride] || '', safeCell(data.attendance), labels.heard[data.heard] || '', safeCell(data.message), '', '新登记', '', '', '', '', '']];
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}/values/Newcomers!A:P:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`, {
       method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ values })
     });
