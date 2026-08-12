@@ -696,7 +696,7 @@
         <div class="eyebrow">NEW HERE?</div>
         <h2>第一次来<br>不用懂规矩</h2>
         <p>
-          不用报名，也不用先认识谁。自己来或带朋友都可以。
+          不用提前登记，直接来也可以。愿意的话，也可以先告诉我们你会来。
         </p>
         <a class="btn btn-primary" href="/new/">告诉我们你会来</a>
       </div>
@@ -713,7 +713,7 @@
           <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
             <span>第一次来需要准备什么？</span><span>+</span>
           </button>
-          <div class="faq-a" id="faq-answer-2" role="region" aria-labelledby="faq-question-2"><div><p>直接来就好，不用报名，也不用准备任何东西。</p></div></div>
+          <div class="faq-a" id="faq-answer-2" role="region" aria-labelledby="faq-question-2"><div><p>直接来就好，不用准备任何东西。提前告诉我们不是必须的，只是方便我们认识你，也可以提前安排接送。</p></div></div>
         </div>
 
         <div class="faq-item">
@@ -943,6 +943,50 @@
       }
     });
   });
+
+  const updateCalendarFromSheet = async () => {
+    try {
+      const response = await fetch('/api/schedule');
+      const result = await response.json();
+      if (!response.ok || !result.ok || !result.events?.length) return;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const upcoming = result.events.filter(event => new Date(`${event.date}T12:00:00`) >= today);
+      const events = (upcoming.length ? upcoming : result.events.slice(-3)).slice(0, 3);
+      const dateGrid = document.querySelector('.date-grid');
+      dateGrid.replaceChildren(...events.map((event, index) => {
+        const date = new Date(`${event.date}T12:00:00`);
+        const card = document.createElement('article');
+        card.className = `date-card${index === 0 ? ' featured' : ''}`;
+
+        const time = document.createElement('time');
+        time.dateTime = event.date;
+        time.textContent = `${date.getMonth() + 1}月${date.getDate()}日 · 周五`;
+        card.append(time);
+
+        if (index === 0) {
+          const mark = document.createElement('div');
+          mark.className = 'date-mark';
+          mark.setAttribute('aria-hidden', 'true');
+          mark.textContent = String(date.getDate());
+          card.append(mark);
+        }
+
+        const copy = document.createElement('div');
+        const title = document.createElement('strong');
+        title.textContent = event.title;
+        const summary = document.createElement('p');
+        summary.textContent = event.summary || '更多安排会陆续更新';
+        copy.append(title, summary);
+        card.append(copy);
+        return card;
+      }));
+    } catch (error) {
+      // Keep the hand-authored kickoff dates if the live schedule is unavailable.
+    }
+  };
+  updateCalendarFromSheet();
 
   const revealGroups = [
     ['.kickoff-head'],
