@@ -15,6 +15,12 @@ const recent = new Map();
 
 const clean = (value, max) => typeof value === 'string' ? value.trim().replace(/\s+/g, ' ').slice(0, max) : '';
 const safeCell = value => /^[=+\-@]/.test(value) ? `'${value}` : value;
+const normalizeContact = value => String(value || '').toLowerCase().replace(/[\s()\-_.]/g, '');
+const looksLikeSpam = data => {
+  const combined = `${data.name} ${data.contact} ${data.message}`;
+  const linkCount = (combined.match(/https?:\/\/|www\./gi) || []).length;
+  return linkCount >= 3 || /(.)\1{9,}/.test(combined) || /^[^a-zA-Z0-9\u4e00-\u9fff]+$/.test(data.name);
+};
 const json = (res, status, body) => res.status(status).setHeader('Content-Type', 'application/json').end(JSON.stringify(body));
 const base64url = value => Buffer.from(value).toString('base64url');
 
@@ -59,6 +65,7 @@ export default async function handler(req, res) {
       message: clean(body.message, MAX.message)
     };
     if (!data.name || data.contact.length < 3) return json(res, 400, { ok: false, message: 'Please complete your name and contact.' });
+    if (looksLikeSpam(data)) return json(res, 400, { ok: false, message: 'Please check the form and try again.' });
     if ((data.status && !allowed.status.includes(data.status)) || (data.faith && !allowed.faith.includes(data.faith)) || (data.ride && !allowed.ride.includes(data.ride))) {
       return json(res, 400, { ok: false, message: 'Please check the selected options.' });
     }
@@ -66,6 +73,16 @@ export default async function handler(req, res) {
     const sheetId = process.env.GOOGLE_SHEET_ID;
     if (!sheetId) throw new Error('Google Sheet is not configured');
     const token = await googleAccessToken();
+    const contactResponse = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}/values/Newcomers!C2:C?majorDimension=COLUMNS`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (!contactResponse.ok) throw new Error(`Google Sheets contact check failed (${contactResponse.status})`);
+    const existingContacts = ((await contactResponse.json()).values?.[0] || []).map(normalizeContact);
+    if (existingContacts.includes(normalizeContact(data.contact))) {
+      recent.set(ip, Date.now());
+      return json(res, 200, { ok: true, duplicate: true });
+    }
+
     const timestamp = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
     const values = [[timestamp, safeCell(data.name), safeCell(data.contact), labels.status[data.status] || '', labels.faith[data.faith] || '', labels.ride[data.ride] || '', safeCell(data.attendance), '', safeCell(data.message), '', '新登记', '']];
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}/values/Newcomers!A:L:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`, {
