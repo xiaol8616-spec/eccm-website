@@ -41,8 +41,14 @@ export default async function handler(req, res) {
     const response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
     if (!response.ok) throw new Error(`Google Sheets read failed (${response.status})`);
     const rows = (await response.json()).values || [];
-    const events = rows.map(([date, title, summary]) => ({ date: serialToISO(date), title: String(title || '').trim(), summary: String(summary || '').trim() }))
-      .filter(event => event.date && event.title);
+    const events = rows
+      .map(([date, title, summary]) => ({
+        date: serialToISO(date),
+        title: String(title || '').trim(),
+        summary: String(summary || '').trim()
+      }))
+      .filter(event => event.date && event.title)
+      .sort((a, b) => a.date.localeCompare(b.date));
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
     return res.status(200).json({ ok: true, events });
   } catch (error) {
