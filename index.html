@@ -93,6 +93,18 @@
     .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:700}
     .nav-links a{transition:opacity .2s ease}
     .nav-links a:hover{opacity:.6}
+    .nav-links .instagram-link{display:inline-flex;align-items:center;gap:7px}
+    .instagram-icon{
+      position:relative;flex:0 0 auto;width:17px;height:17px;border:1.8px solid currentColor;border-radius:5px
+    }
+    .instagram-icon:before{
+      content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;
+      border:1.6px solid currentColor;border-radius:50%;transform:translate(-50%,-50%)
+    }
+    .instagram-icon:after{
+      content:"";position:absolute;right:2.5px;top:2.5px;width:2.5px;height:2.5px;
+      border-radius:50%;background:currentColor
+    }
     .nav-cta{border:1px solid var(--ink);padding:10px 16px;border-radius:999px}
     .menu-btn{display:none;border:0;background:transparent;padding:10px}
     .menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px}
@@ -605,7 +617,9 @@
       <a href="#friday">周五查经</a>
       <a href="#first">第一次来</a>
       <a href="#midweek">周三聚会</a>
-      <a href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener">Follow us</a>
+      <a class="instagram-link" href="https://www.instagram.com/eccm_kc/" target="_blank" rel="noopener" aria-label="在 Instagram 关注 ECCM">
+        <span class="instagram-icon" aria-hidden="true"></span><span>Follow us</span>
+      </a>
       <a href="/new/" class="nav-cta">想来？告诉我们一声</a>
     </div>
   </nav>
