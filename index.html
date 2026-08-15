@@ -733,7 +733,7 @@
     <div class="container first-grid">
       <div class="first-copy">
         <div class="eyebrow">NEW HERE?</div>
-        <h2>第一次来<br>不用懂规矩</h2>
+        <h2>第一次来？<br>欢迎你</h2>
         <p>
           不用提前登记，直接来也可以。愿意的话，也可以先告诉我们一声。
         </p>
@@ -1021,8 +1021,7 @@
         ? '一起读这段经文，分享问题和发现'
         : '本周安排会陆续更新';
     }
-    const firstThought = clean.split(/(?<=[。！？!?；;])\s*/)[0];
-    return firstThought.length > 46 ? `${firstThought.slice(0, 45).trim()}…` : firstThought;
+    return clean.length > 46 ? `${clean.slice(0, 45).trim()}…` : clean;
   };
 
   const presentScheduleEvent = event => {
